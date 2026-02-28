@@ -73,8 +73,15 @@ export function handleAPIError(error: unknown) {
 export const serverApi = {
   turnstile: {
     verify: async (token: string) => {
-      // Skip verification in development if no secret key is provided
+      // Skip verification only in local development when the secret is missing.
+      // In non-development environments, fail closed to avoid CAPTCHA bypass.
       if (!process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY) {
+        if (process.env.NODE_ENV !== "development") {
+          throw new Error(
+            "CAPTCHA verification is not configured. Please contact support.",
+          );
+        }
+
         console.warn(
           "Cloudflare Turnstile secret key not found - skipping verification in development",
         );
