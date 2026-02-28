@@ -14,7 +14,7 @@
     "validate:js": "node scripts/validate.js"
   },
   "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.1.3",
+    "@cloudflare/kv-asset-handler": "^0.4.2",
     "@cloudflare/workers-types": "^4.20250321.0",
     "@marsidev/react-turnstile": "^1.1.0",
     "@remix-run/cloudflare": "^2.16.6",
