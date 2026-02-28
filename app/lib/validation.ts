@@ -79,7 +79,7 @@ export function validateSoftwareFile(
     let jsonData;
     try {
       jsonData = JSON.parse(fileContents);
-    } catch (e) {
+    } catch {
       return { success: false, error: `Invalid JSON in file: ${filePath}` };
     }
 

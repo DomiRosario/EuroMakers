@@ -50,6 +50,16 @@ export default function Footer() {
                     Update Software
                   </Link>
                 </li>
+                <li>
+                  <a
+                    href="https://github.com/DomiRosario/EuroMakers"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 hover:text-euBlue"
+                  >
+                    GitHub Repository
+                  </a>
+                </li>
               </ul>
             </div>
 

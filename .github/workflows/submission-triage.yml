@@ -226,10 +226,10 @@ jobs:
       - name: Require moderation token
         if: steps.gate.outputs.should_run == 'true' && steps.score.outputs.decision != 'reject'
         env:
-          MODERATION_TOKEN: ${{ secrets.GITHUB_MODERATION_TOKEN }}
+          MODERATION_TOKEN: ${{ secrets.GH_MODERATION_TOKEN }}
         run: |
           if [ -z "$MODERATION_TOKEN" ]; then
-            echo "GITHUB_MODERATION_TOKEN is required for moderation write actions."
+            echo "GH_MODERATION_TOKEN is required for moderation write actions."
             exit 1
           fi
 
@@ -238,7 +238,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_MODERATION_TOKEN }}
+          token: ${{ secrets.GH_MODERATION_TOKEN }}
           commit-message: "chore(submission): add ${{ steps.score.outputs.id }}"
           title: "[Submission] Add ${{ steps.score.outputs.id }}"
           body: |
@@ -329,6 +329,6 @@ jobs:
         if: steps.gate.outputs.should_run == 'true' && steps.score.outputs.decision == 'auto-merge' && steps.cpr.outputs.pull-request-number != ''
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
-          token: ${{ secrets.GITHUB_MODERATION_TOKEN }}
+          token: ${{ secrets.GH_MODERATION_TOKEN }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: squash
