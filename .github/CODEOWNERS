@@ -1,0 +1,3 @@
+# Sensitive automation paths only
+.github/workflows/* @DomiRosario
+scripts/moderation/* @DomiRosario
