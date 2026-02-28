@@ -1,0 +1,18 @@
+{
+  "id": "tuta",
+  "name": "Tuta",
+  "description": "An end-to-end encrypted email software and freemium hosted secure email service based in Germany, with a focus on security and privacy.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://tuta.com/",
+  "longDescription": "Tuta is a secure email service developed by a German company that focuses on providing end-to-end encrypted communication. The name 'Tuta' is derived from Latin and means 'secure message'. Created in 2011, Tuta has grown to become one of Europe's leading privacy-focused email providers.\n\nUnlike conventional email services, Tuta encrypts all data on the user's device, ensuring that not even the company itself can access the content of emails. This approach provides a high level of privacy and security for users concerned about data protection.\n\nAs a German company, Tuta operates under the strict European data protection regulations, including GDPR. The service is available as both a free and premium offering, with the latter providing additional features and storage capacity. Tuta's commitment to privacy, security, and open-source development has made it popular among privacy-conscious individuals, journalists, and organizations worldwide.",
+  "features": [
+    "End-to-end encryption",
+    "Anonymous signup",
+    "Secure email",
+    "Calendar with encryption",
+    "Contact management",
+    "No tracking",
+    "Open source"
+  ]
+}

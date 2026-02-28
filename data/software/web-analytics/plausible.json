@@ -1,0 +1,16 @@
+{
+  "id": "plausible",
+  "name": "Plausible",
+  "description": "A lightweight, privacy-focused web analytics tool that provides simple and actionable insights without compromising user privacy.",
+  "country": "Estonia",
+  "logo": "/images/placeholder.svg",
+  "website": "https://plausible.io",
+  "longDescription": "Plausible is an open-source web analytics platform designed as a privacy-friendly alternative to tools like Google Analytics. Founded in Estonia, it emphasizes simplicity, lightweight performance, and user data protection by avoiding cookies and personal data collection. Plausible offers a single-page dashboard with essential metrics like unique visitors, page views, and referral sources, making it easy for website owners to understand traffic trends without complex setups. Its subscription-based model supports a sustainable, independent project that prioritizes ethical analytics over surveillance capitalism.",
+  "features": [
+    "Simple, clutter-free dashboard for quick insights",
+    "Privacy-first approach with no cookies or personal data tracking",
+    "Lightweight script (75x smaller than Google Analytics) for faster site loading",
+    "Open source with community-driven development",
+    "Support for goal tracking and campaign analysis via UTM parameters"
+  ]
+}

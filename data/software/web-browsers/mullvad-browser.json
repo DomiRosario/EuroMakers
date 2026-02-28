@@ -1,0 +1,18 @@
+{
+  "id": "mullvad-browser",
+  "name": "Mullvad Browser",
+  "description": "A privacy-focused web browser developed in collaboration between Mullvad VPN and the Tor Project, designed to minimize tracking and fingerprinting.",
+  "country": "Sweden",
+  "logo": "/images/placeholder.svg",
+  "website": "https://mullvad.net/en/browser",
+  "longDescription": "Mullvad Browser is a privacy-focused web browser developed through collaboration between Mullvad VPN and the Tor Project. Based on Firefox ESR, it's designed to minimize tracking and browser fingerprinting while providing a user-friendly experience.\n\nThe browser includes built-in privacy features like anti-fingerprinting protection, strict cookie policies, and enhanced tracking protection. It's configured for optimal privacy by default and doesn't require a Mullvad VPN subscription to use.\n\nDeveloped by Mullvad, a Swedish company known for its commitment to privacy and transparency, the browser represents their expansion from VPN services to broader privacy tools.",
+  "features": [
+    "Anti-fingerprinting protection",
+    "Built-in privacy features",
+    "Firefox-based architecture",
+    "Strict cookie policies",
+    "Enhanced tracking protection",
+    "Regular security updates",
+    "No telemetry collection"
+  ]
+}

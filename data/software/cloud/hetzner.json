@@ -1,0 +1,20 @@
+{
+  "id": "hetzner",
+  "name": "Hetzner",
+  "description": "German web hosting company offering dedicated servers, cloud hosting, and data center services with focus on reliability and affordability.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://hetzner.de/",
+  "longDescription": "Hetzner, founded in 1997 in Gunzenhausen, Germany, is a leading web hosting company and one of the largest data center operators in Europe. It offers a comprehensive range of services including dedicated servers, cloud computing, managed servers, web hosting, storage solutions, colocation, and custom IT infrastructure solutions. Hetzner is known for its reliability, affordability, and commitment to providing high-performance infrastructure and excellent customer support. The company operates its own high-tech data centers in Nuremberg and Falkenstein, Germany, as well as in Helsinki, Finland, with additional locations in the USA and Singapore, ensuring global reach and redundancy.",
+  "features": [
+    "Dedicated servers",
+    "Cloud computing",
+    "Managed servers",
+    "Web hosting",
+    "Storage solutions",
+    "Colocation",
+    "Custom IT infrastructure solutions",
+    "GPU servers for AI workloads",
+    "Server auction"
+  ]
+}

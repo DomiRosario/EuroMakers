@@ -1,0 +1,17 @@
+{
+  "id": "ecosia",
+  "name": "Ecosia",
+  "description": "An eco-friendly search engine that donates 80% of its surplus revenue to tree planting, powered by renewable energy.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.ecosia.org/",
+  "longDescription": "Ecosia, launched in 2009 in Berlin, Germany, is a search engine with a mission to combat climate change by funding tree planting with 100% of its profits. Using Bing’s search technology with its own algorithms, Ecosia operates on CO2-neutral servers and has planted over 200 million trees by 2022. It appeals to environmentally conscious users and has partnered with Qwant to challenge Google in Europe. Available as a browser extension and mobile app, Ecosia combines sustainability with a privacy-respecting approach.",
+  "features": [
+    "100% profit to tree planting",
+    "CO2-neutral servers",
+    "Privacy-focused (no data selling)",
+    "Browser extension support",
+    "Transparent impact reports",
+    "Custom search algorithms"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "diamond-forms-flows-docs",
+  "name": "Diamond Forms, Flows & Docs",
+  "description": "Diamond is a forms and workflow automation tool, with extensive features for more complex forms (calculations, validations, autofill, signature) and process automation with automatic actions, document generation and system integration.",
+  "country": "Netherlands",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.diamondforms.net/en",
+  "longDescription": "Effortless forms automation: \r\nUse Diamond Forms, Flows & Docs to create smart digital forms in your corporate identity. Automate your entire process with the workflow and document generation tools. Diamond exceeds other solutions with many unique functions:\r\n\r\n- complex calculations (with formulas or linked Excel sheets)\r\n- automatic actions (e-mails to invite, confirm or remind, saving data to the right systems, validating answers)\r\n- digital signature\r\n- document generation fully in your branding\r\n- integration with other systems (payment providers, authentication, external data sources, back-office software)\r\n- extensive security and privacy settings to remain GDPR compliant\r\n\r\nBe 100% digital and manage complex processes, reduce your time to market, optimise workflows, work more efficiently, and comply with all regulations.",
+  "features": [
+    "Document generation",
+    "Formulas for complex calculations",
+    "Automatic actions",
+    "Data exchange with other software",
+    "Multi-language",
+    "Multi-organisation",
+    "Hosting in NL",
+    "GDPR-compliant"
+  ]
+}

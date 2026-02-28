@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --eu-blue: #003399;
+  --eu-yellow: #ffcc00;
+  --navbar-height: 60px;
+}
+
+@layer base {
+  html,
+  body {
+    @apply overflow-x-hidden max-w-full;
+    font-family: "Inter", sans-serif;
+    @apply bg-white min-h-screen;
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-white text-gray-800;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-euBlue ring-offset-2;
+  }
+
+  /* Force light mode for form elements */
+  input,
+  textarea,
+  select {
+    color-scheme: light;
+    background-color: white !important;
+    color: #1f2937 !important;
+  }
+
+  /* DaisyUI form elements override */
+  .input,
+  .textarea {
+    background-color: white !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db !important;
+  }
+
+  .input:focus,
+  .textarea:focus {
+    background-color: white !important;
+    color: #1f2937 !important;
+    border-color: #003399 !important;
+  }
+
+  /* DaisyUI select styling - force override */
+  select.select,
+  .select,
+  select {
+    background-color: white !important;
+    color: #1f2937 !important;
+    border-color: #d1d5db !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  select.select:focus,
+  .select:focus,
+  select:focus {
+    background-color: white !important;
+    color: #1f2937 !important;
+    border-color: #003399 !important;
+  }
+
+  select.select option,
+  .select option,
+  select option {
+    background-color: white !important;
+    color: #1f2937 !important;
+  }
+
+  .input::placeholder,
+  .textarea::placeholder {
+    color: #9ca3af !important;
+  }
+
+  /* Custom animated checkbox - yellow border, blue tick */
+  .checkbox {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 24px !important;
+    height: 24px !important;
+    border: 2px solid #ffcc00 !important;
+    border-radius: 5px !important;
+    background-color: white !important;
+    position: relative !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .checkbox:hover:not(:checked) {
+    border-color: #e6b800 !important;
+    transform: scale(1.05) !important;
+  }
+
+  .checkbox:checked {
+    background-color: #ffcc00 !important;
+    border-color: #ffcc00 !important;
+    animation: checkbox-bounce 0.4s ease !important;
+  }
+
+  .checkbox:checked::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 14px !important;
+    height: 14px !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M9 12l2 2 4-4' stroke='%23003399' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    animation: tick-appear 0.3s ease 0.1s forwards !important;
+  }
+
+  .checkbox:focus {
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.3) !important;
+    outline: none !important;
+  }
+
+  /* Keyframes for animations */
+  @keyframes checkbox-bounce {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes tick-appear {
+    0% {
+      transform: translate(-50%, -50%) scale(0) rotate(-45deg);
+      opacity: 0;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+  }
+}
+
+@layer utilities {
+  .btn-eu {
+    @apply bg-euBlue hover:bg-blue-700 text-white font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-0;
+  }
+
+  .btn-eu-secondary {
+    @apply bg-euYellow hover:bg-yellow-500 text-black font-medium rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border-0;
+  }
+
+  .eu-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .eu-section {
+    @apply py-12 md:py-20;
+  }
+
+  .form-input-eu {
+    @apply input input-bordered w-full;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  /* European design system utilities */
+  .text-eu-gradient {
+    @apply bg-gradient-to-r from-euBlue to-blue-600 bg-clip-text text-transparent;
+  }
+
+  .eu-card-shadow {
+    @apply shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .modern-card {
+    @apply bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden;
+  }
+
+  .glass-effect {
+    @apply bg-white/70 backdrop-blur-md border border-white/80 shadow-sm;
+  }
+
+  /* Navbar utilities */
+  .navbar-padding {
+    padding-top: var(--navbar-height, 60px);
+  }
+
+  /* Page header utilities */
+  .page-header-section {
+    @apply pt-10 md:pt-16;
+  }
+
+  /* Card styles */
+  .card {
+    @apply bg-white rounded-lg shadow border border-gray-100 overflow-hidden transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply shadow-md transform -translate-y-1;
+  }
+
+  /* Typography helper classes */
+  .page-title {
+    @apply text-3xl md:text-4xl font-bold text-gray-900 mb-4;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-gray-900 mb-3;
+  }
+
+  /* Turnstile container responsiveness */
+  .cf-turnstile iframe {
+    max-width: 100%;
+    scale: 0.95;
+    transform-origin: left top;
+  }
+
+  @media (max-width: 400px) {
+    .cf-turnstile iframe {
+      scale: 0.85;
+    }
+  }
+
+  @keyframes ping-slow {
+    75%,
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  .animate-ping-slow {
+    animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+}
+
+/* Custom classes */
+.navbar-padding {
+  padding-top: var(--navbar-height, 60px);
+}
+
+/* Ensure pages take full height */
+.page-container {
+  min-height: calc(100vh - var(--navbar-height, 60px));
+}
+
+@layer components {
+  .eu-section {
+    @apply py-12 sm:py-16;
+  }
+
+  .eu-container {
+    @apply container mx-auto py-8;
+  }
+
+  .page-header-section {
+    @apply mb-12;
+  }
+}

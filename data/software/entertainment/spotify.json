@@ -1,0 +1,17 @@
+{
+  "id": "spotify",
+  "name": "Spotify",
+  "description": "Leading European audio streaming service offering a vast library of music, podcasts, and audiobooks through an AI-powered platform that delivers personalized recommendations and seamless cross-device listening experiences.",
+  "country": "Sweden",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.spotify.com/",
+  "longDescription": "Founded in Stockholm, Sweden, in 2006 by Daniel Ek and Martin Lorentzon, Spotify has grown into the world's largest audio streaming and media service provider. It offers a vast library of over 100 million songs, millions of podcasts, and hundreds of thousands of audiobooks, accessible through a freemium model. Initially launched in Europe in 2008, Spotify now boasts hundreds of millions of users globally. Its mission is to revolutionize all of audio by providing personalized listening experiences and connecting creators with their fans. Spotify generates revenue through premium subscriptions and advertising, and it is listed on the New York Stock Exchange via a holding company in Luxembourg.",
+  "features": [
+    "AI-Powered Music Discovery & Recommendations",
+    "Seamless Multi-Device Streaming",
+    "Premium Offline Mode for On-the-Go",
+    "High-Bitrate Audio Streaming",
+    "Social Playlist Creation & Sharing",
+    "One-Stop Audio Entertainment Hub"
+  ]
+}

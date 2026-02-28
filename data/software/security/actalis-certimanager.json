@@ -1,0 +1,19 @@
+{
+  "id": "actalis-certimanager",
+  "name": "Actalis CertiManager",
+  "description": "EU-hosted certificate lifecycle manager for secure digital certificate governance, discovery, and automation. Compliant with eIDAS and GDPR.",
+  "country": "Italy",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.actalis.com/mpki",
+  "longDescription": "Actalis CertiManager, developed by Actalis, a leading European Certification Authority based in Italy, provides a comprehensive solution for managing digital certificates. It supports organizations in securely handling certificate lifecycles with features like centralized management, automation, and integration via REST APIs, ACME, and SCEP protocols. Compliant with eIDAS and GDPR, it ensures data sovereignty and security, making it ideal for European enterprises and public institutions. CertiManager also offers certificate discovery through CT Logs and dedicated technical support for large-scale implementations.",
+  "features": [
+    "Enterprise RA Interface",
+    "Operator Credentials",
+    "Certificate Notifications",
+    "Centralized Certificate Management",
+    "API and Web Integration",
+    "ACME Protocol Automation",
+    "Certificate Discovery via CT Logs",
+    "Technical Support for Implementations"
+  ]
+}

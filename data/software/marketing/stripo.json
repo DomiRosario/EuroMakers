@@ -1,0 +1,20 @@
+{
+  "id": "stripo",
+  "name": "Stripo",
+  "description": "An online drag-and-drop and HTML email platform for building high-quality, complex emails quickly.",
+  "country": "Ukraine",
+  "logo": "/images/placeholder.svg",
+  "website": "https://stripo.email/",
+  "longDescription": "Stripo is an email design platform that simplifies the email production process for marketers, allowing them to create professional and responsive emails without coding skills. Launched in February 2017 by a team in Ukraine, Stripo has grown to serve over 1.5 million users worldwide, including 65% of Fortune 100 companies. It offers a drag-and-drop editor, HTML editor, and tools for interactive and real-time content. Stripo integrates with over 80 ESPs and email clients, such as Mailchimp, HubSpot, and Salesforce, making it easy to export and use emails across different platforms. The platform also provides features like modular email design, bulk actions, and advanced security measures. Stripo continues to innovate with updates like dark mode, a new editor, real-time commenting, and an AI Assistant for email content generation.",
+  "features": [
+    "Drag-and-drop email editor",
+    "HTML email editor",
+    "Integration with over 80 ESPs/CRMs",
+    "Modular email design",
+    "AMP support",
+    "Real-time and interactive content",
+    "High-quality, responsive email templates",
+    "Security focus with data protection",
+    "AI Assistant for email copy and subject lines"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "libreoffice",
+  "name": "LibreOffice",
+  "description": "A free and open-source office suite, a project of The Document Foundation. It is compatible with other major office suites and available on a variety of platforms.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.libreoffice.org/",
+  "longDescription": "LibreOffice is a free and open-source office productivity software suite, developed by The Document Foundation. It was forked from OpenOffice.org in 2010, which was an open-sourced version of the earlier StarOffice.\n\nThe suite includes applications for word processing, spreadsheets, presentations, diagrams and drawings, databases, and mathematical formula editing. LibreOffice uses the international ISO/IEC standard OpenDocument file format (ODF) as its native format, while also supporting other formats including those from Microsoft Office.\n\nThe Document Foundation, which oversees LibreOffice development, is based in Germany and operates as a non-profit organization. LibreOffice has become the default office suite in many Linux distributions and is widely used in government, education, and business settings across Europe.",
+  "features": [
+    "Word processing",
+    "Spreadsheets",
+    "Presentations",
+    "Database management",
+    "Vector graphics",
+    "Formula editing",
+    "PDF export"
+  ]
+}

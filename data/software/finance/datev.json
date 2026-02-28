@@ -1,0 +1,17 @@
+{
+  "id": "datev",
+  "name": "DATEV",
+  "description": "Accounting software for tax consultants and SMEs, specializing in German financial compliance.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://www.datev.de/",
+  "longDescription": "DATEV, founded in 1966 in Nuremberg, Germany, is a trusted provider of accounting and tax software, primarily serving tax consultants, accountants, and SMEs in Germany. With a focus on compliance with German financial regulations, DATEV offers tools for bookkeeping, payroll, and tax management, supporting over 2.5 million users with reliable, secure solutions.",
+  "features": [
+    "Tax and payroll management",
+    "Bookkeeping tools",
+    "German regulatory compliance",
+    "Secure data processing",
+    "Integration with tax consultants",
+    "Cloud and on-premise options"
+  ]
+}

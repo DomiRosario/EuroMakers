@@ -1,0 +1,23 @@
+{
+  "id": "evaluatemyidea-ai",
+  "name": "EvaluateMyIdea.AI",
+  "description": "An AI-powered business idea validation platform that provides entrepreneurs with comprehensive analysis, viability scoring, and actionable feedback to evaluate business concepts before investing time and money.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://evaluatemyidea.ai/",
+  "longDescription": "EvaluateMyIdea.AI is a German-based AI-powered platform that helps entrepreneurs systematically validate business ideas through comprehensive analysis and evidence-based feedback. Founded to address the high failure rate of startups due to untested assumptions, the platform uses a team of specialized AI agents to analyze every aspect of a business idea including problem clarity, solution effectiveness, market opportunity, competition, and risk assessment.\n\nThe platform delivers an Overall Viability Score (1-100) along with detailed recommendations across nine core business dimensions. Unlike generic business advice, EvaluateMyIdea.AI provides brutally honest, objective analysis that identifies potential flaws and blind spots that friends, family, or general AI tools might miss or sugarcoat.\n\nAs a German company, EvaluateMyIdea.AI operates under strict European data protection standards and GDPR compliance, ensuring user data and business ideas remain confidential and secure. The platform serves entrepreneurs, startup founders, business students, and innovators worldwide who need systematic validation before committing significant resources to their ventures.",
+  "features": [
+    "AI-powered business idea evaluation",
+    "Overall Viability Score (1-100)",
+    "9-section comprehensive analysis",
+    "Specialized AI agent analysis",
+    "Product-market fit assessment",
+    "Competition and market analysis",
+    "Risk assessment and compliance check",
+    "Actionable strategic recommendations",
+    "Multiple export formats (PDF, DOCX, HTML, Markdown)",
+    "GDPR-compliant data protection",
+    "Evidence-based feedback system",
+    "Business-type-specific insights"
+  ]
+}

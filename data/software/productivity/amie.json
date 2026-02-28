@@ -1,0 +1,18 @@
+{
+  "id": "amie",
+  "name": "Amie",
+  "description": "A joyful productivity app combining calendar, task management, and email, designed to help users stay organized with natural language scheduling and extensive integrations.",
+  "country": "Germany",
+  "logo": "/images/placeholder.svg",
+  "website": "https://amie.so/",
+  "longDescription": "Amie is a productivity app launched in January 2024 by Amie GmbH, integrating calendar, todos, and email into a single platform. It aims to rethink time management with a focus on joyful design and efficiency, offering features like natural language scheduling and AI-powered tools.\n\nDeveloped in Berlin, Germany, Amie is available on Mac, iOS, Web, and Windows, supporting a seamless experience across devices. It includes extensive integrations with apps like Todoist, Zoom, and Spotify, and is praised for its clean interface and user-friendly approach.\n\nCreated in 2020, Amie GmbH raised $7 million in 2022 to bring this vision to life, targeting busy professionals and students. With a free Basic plan and a $5/month Pro tier, Amie balances accessibility and advanced functionality, competing with traditional calendar and task management tools.",
+  "features": [
+    "Natural language scheduling",
+    "Integrated email client",
+    "Task management with drag-and-drop",
+    "Extensive integrations (Todoist, Zoom, Spotify)",
+    "AI-powered auto-scheduling",
+    "Shareable scheduling links",
+    "Customizable UI with widgets"
+  ]
+}
