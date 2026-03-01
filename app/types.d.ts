@@ -2,7 +2,6 @@ declare global {
   interface Window {
     ENV?: {
       MAINTENANCE_MODE?: string;
-      CLOUDFLARE_TURNSTILE_SITE_KEY?: string;
     };
   }
 }

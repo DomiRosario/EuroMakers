@@ -5,12 +5,11 @@ import {
   type MetaFunction,
 } from "@remix-run/node";
 import { Form, useActionData, useLoaderData } from "@remix-run/react";
-import { useState } from "react";
-import { Turnstile } from "@marsidev/react-turnstile";
 import Layout from "~/components/Layout";
 import { getAllSoftwareServer } from "~/lib/software.server";
 import { applyRateLimit } from "~/utils/rate-limit.server";
-import { handleAPIError, serverApi } from "~/lib/api/server";
+import { handleAPIError } from "~/lib/api/server";
+import { checkBotId } from "botid/server";
 import { sanitizeEmail, sanitizeText, sanitizeUrl } from "~/utils/sanitize.server";
 import {
   buildReportIssueBody,
@@ -57,10 +56,9 @@ export async function action({ request }: ActionFunctionArgs) {
     const contactEmailRaw = formData.get("contactEmail") as string;
     const evidenceUrl = evidenceUrlRaw ? sanitizeUrl(evidenceUrlRaw) : "";
     const contactEmail = contactEmailRaw ? sanitizeEmail(contactEmailRaw) : "";
-    const turnstileToken = formData.get("cf-turnstile-response") as string;
     const gdprConsent = formData.get("gdprConsent") === "on";
 
-    if (!softwareId || !reason || !details || !turnstileToken || !gdprConsent) {
+    if (!softwareId || !reason || !details || !gdprConsent) {
       return json<ActionResponse>(
         { error: "All required fields must be completed." },
         { status: 400 },
@@ -91,7 +89,10 @@ export async function action({ request }: ActionFunctionArgs) {
     const normalizedReason =
       reason === "inactivity" || reason === "spam" ? reason : "other";
 
-    await serverApi.turnstile.verify(turnstileToken);
+    const botCheck = await checkBotId();
+    if (botCheck.isBot) {
+      return json<ActionResponse>({ error: "Access denied" }, { status: 403 });
+    }
 
     const payload: ReportPayload = {
       submissionType: "software-report",
@@ -151,11 +152,6 @@ export const meta: MetaFunction = () =>
 export default function UpdateSoftwarePage() {
   const { software, preselectedSoftware } = useLoaderData<typeof loader>();
   const actionData = useActionData<ActionResponse>();
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const turnstileSiteKey =
-    (typeof window !== "undefined" &&
-      window.ENV?.CLOUDFLARE_TURNSTILE_SITE_KEY) ||
-    "0x4AAAAAABAgVA930JNOQMwm";
 
   return (
     <Layout>
@@ -268,18 +264,9 @@ export default function UpdateSoftwarePage() {
                   </label>
                 </div>
 
-                <div className="flex flex-col items-center gap-2">
-                  <Turnstile
-                    siteKey={turnstileSiteKey}
-                    onSuccess={(token) => setTurnstileToken(token)}
-                    options={{ theme: "light" }}
-                  />
-                </div>
-
                 <button
                   type="submit"
                   className="btn bg-blue-600 hover:bg-blue-700 text-white border-0"
-                  disabled={!turnstileToken}
                 >
                   Submit Report
                 </button>
