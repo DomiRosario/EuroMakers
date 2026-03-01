@@ -1,18 +1,35 @@
-import DOMPurify from "isomorphic-dompurify";
+import sanitizeHtmlLib from "sanitize-html";
+
+const PLAIN_TEXT_SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
+  allowedTags: [],
+  allowedAttributes: {},
+};
+
+const RICH_TEXT_SANITIZE_OPTIONS: sanitizeHtmlLib.IOptions = {
+  allowedTags: ["b", "i", "em", "strong", "a", "p", "br"],
+  allowedAttributes: {
+    a: ["href"],
+  },
+  allowedSchemes: ["http", "https", "mailto"],
+  allowProtocolRelative: false,
+};
 
 // Basic text sanitization for general inputs
 export function sanitizeText(input: string | null | undefined): string {
   if (!input) return "";
-  return DOMPurify.sanitize(input.trim(), { ALLOWED_TAGS: [] });
+  return sanitizeHtmlLib(input.trim(), PLAIN_TEXT_SANITIZE_OPTIONS);
 }
 
 // URL sanitization
 export function sanitizeUrl(url: string | null | undefined): string {
   if (!url) return "";
-  const sanitized = DOMPurify.sanitize(url.trim());
+  const sanitized = sanitizeText(url);
   try {
     const urlObj = new URL(sanitized);
-    return urlObj.toString(); // Use the normalized URL string
+    if (urlObj.protocol !== "http:" && urlObj.protocol !== "https:") {
+      return "";
+    }
+    return urlObj.toString();
   } catch {
     return "";
   }
@@ -21,7 +38,7 @@ export function sanitizeUrl(url: string | null | undefined): string {
 // Email sanitization
 export function sanitizeEmail(email: string | null | undefined): string {
   if (!email) return "";
-  const sanitized = DOMPurify.sanitize(email.trim(), { ALLOWED_TAGS: [] });
+  const sanitized = sanitizeText(email);
   // Basic email format validation
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(sanitized) ? sanitized : "";
 }
@@ -29,10 +46,7 @@ export function sanitizeEmail(email: string | null | undefined): string {
 // HTML content sanitization (for rich text)
 export function sanitizeHtml(html: string | null | undefined): string {
   if (!html) return "";
-  return DOMPurify.sanitize(html.trim(), {
-    ALLOWED_TAGS: ["b", "i", "em", "strong", "a", "p", "br"],
-    ALLOWED_ATTR: ["href"],
-  });
+  return sanitizeHtmlLib(html.trim(), RICH_TEXT_SANITIZE_OPTIONS);
 }
 
 // Sanitize object keys and values

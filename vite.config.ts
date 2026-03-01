@@ -1,4 +1,5 @@
 import { vitePlugin as remix } from "@remix-run/dev";
+import { vercelPreset } from "@vercel/remix/vite";
 import { defineConfig, loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
@@ -11,10 +12,12 @@ declare module "@remix-run/node" {
 export default defineConfig(({ mode }) => {
   // Load env file based on mode
   const env = loadEnv(mode, process.cwd(), '');
+  const emptyChunkWarnings = ["sitemap_._xml", "api.software", "api.contact"];
 
   return {
     plugins: [
       remix({
+        presets: [vercelPreset()],
         future: {
           v3_fetcherPersist: true,
           v3_relativeSplatPath: true,
@@ -26,8 +29,22 @@ export default defineConfig(({ mode }) => {
       tsconfigPaths(),
     ],
     ssr: {
-      external: ["@remix-run/dev/server-build"],
+      external: ["@remix-run/dev/server-build", "canvas"],
       noExternal: ["node:*"],
+    },
+    build: {
+      rollupOptions: {
+        onwarn(warning, warn) {
+          if (
+            warning.code === "EMPTY_BUNDLE" &&
+            emptyChunkWarnings.some((chunkName) => warning.message.includes(chunkName))
+          ) {
+            return;
+          }
+
+          warn(warning);
+        },
+      },
     },
     define: {
       'process.env.MAINTENANCE_MODE': JSON.stringify(env.MAINTENANCE_MODE),
