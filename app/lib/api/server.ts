@@ -2,6 +2,13 @@ import { json } from "@remix-run/node";
 import type { APIError } from "./client";
 import { sendEmail } from "~/utils/smtp2go.server";
 
+interface TurnstileResponse {
+  success: boolean;
+  "error-codes"?: string[];
+  challenge_ts?: string;
+  hostname?: string;
+}
+
 export function handleAPIError(error: unknown) {
   console.error("API Error:", error);
 
@@ -64,6 +71,101 @@ export function handleAPIError(error: unknown) {
 }
 
 export const serverApi = {
+  turnstile: {
+    verify: async (token: string) => {
+      // Skip verification only in local development when the secret is missing.
+      // In non-development environments, fail closed to avoid CAPTCHA bypass.
+      if (!process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY) {
+        if (process.env.NODE_ENV !== "development") {
+          throw new Error(
+            "CAPTCHA verification is not configured. Please contact support.",
+          );
+        }
+
+        console.warn(
+          "Cloudflare Turnstile secret key not found - skipping verification in development",
+        );
+        return { success: true };
+      }
+
+      try {
+        // Create fetch with timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
+        const response = await fetch(
+          "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              secret: process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY,
+              response: token,
+            }),
+            signal: controller.signal,
+          },
+        );
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+          throw new Error(
+            `Turnstile API returned ${response.status}: ${response.statusText}`,
+          );
+        }
+
+        const result = (await response.json()) as TurnstileResponse;
+
+        if (!result.success) {
+          console.error(
+            "Turnstile verification failed:",
+            result["error-codes"],
+          );
+          throw new Error("Invalid CAPTCHA verification");
+        }
+
+        return result;
+      } catch (error) {
+        if (error instanceof Error) {
+          // Handle timeout and network errors more gracefully
+          if (
+            error.name === "AbortError" ||
+            error.message.includes("timeout")
+          ) {
+            console.error(
+              "Turnstile verification timeout - allowing request in development",
+            );
+            // In development, allow the request to proceed if there's a network issue
+            if (process.env.NODE_ENV === "development") {
+              return { success: true };
+            }
+            throw new Error(
+              "CAPTCHA verification service is temporarily unavailable. Please try again.",
+            );
+          }
+
+          if (
+            error.message.includes("fetch failed") ||
+            error.message.includes("ENOTFOUND")
+          ) {
+            console.error(
+              "Turnstile network error - allowing request in development",
+            );
+            // In development, allow the request to proceed if there's a network issue
+            if (process.env.NODE_ENV === "development") {
+              return { success: true };
+            }
+            throw new Error(
+              "CAPTCHA verification service is temporarily unavailable. Please try again.",
+            );
+          }
+        }
+        throw error;
+      }
+    },
+  },
   email: {
     send: async (options: {
       to: string;

@@ -7,6 +7,7 @@ import {
 import { Buffer } from "node:buffer";
 import { Form, useActionData } from "@remix-run/react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import Layout from "~/components/Layout";
 import { CATEGORIES } from "~/lib/categories";
 import {
@@ -23,8 +24,7 @@ import {
   isEuropeanCountry,
 } from "~/lib/european-countries";
 import { getEnvVars } from "~/env.server";
-import { handleAPIError } from "~/lib/api/server";
-import { checkBotId } from "botid/server";
+import { serverApi, handleAPIError } from "~/lib/api/server";
 import { applyRateLimit } from "~/utils/rate-limit.server";
 import {
   sanitizeEmail,
@@ -90,6 +90,7 @@ const STEP_META: StepMeta[] = [
       "Use an email you monitor for follow-up questions.",
       "Optional: upload a logo file (PNG/JPG/WEBP/SVG/GIF/ICO).",
       "Confirm EU development and GDPR consent.",
+      "Complete CAPTCHA, then submit.",
     ],
   },
 ];
@@ -157,6 +158,7 @@ export async function action({ request }: ActionFunctionArgs) {
     const submitterEmail = sanitizeEmail(
       formData.get("submitterEmail") as string,
     );
+    const turnstileToken = formData.get("cf-turnstile-response") as string;
     const isEuropean = formData.get("isEuropean") === "on";
     const gdprConsent = formData.get("gdprConsent") === "on";
 
@@ -171,6 +173,7 @@ export async function action({ request }: ActionFunctionArgs) {
       !features ||
       !evidenceUrlsInput ||
       !submitterEmail ||
+      !turnstileToken ||
       !isEuropean ||
       !gdprConsent
     ) {
@@ -286,10 +289,8 @@ export async function action({ request }: ActionFunctionArgs) {
       );
     }
 
-    const botCheck = await checkBotId();
-    if (botCheck.isBot) {
-      return json<ActionResponse>({ error: "Access denied" }, { status: 403 });
-    }
+    // Verify Turnstile token first since it's quick
+    await serverApi.turnstile.verify(turnstileToken);
 
     const id = generateId(name);
     const env = getEnvVars();
@@ -404,6 +405,7 @@ export const meta: MetaFunction = () =>
 
 export default function SubmitPage() {
   const [currentStep, setCurrentStep] = useState(1);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     website: "",
@@ -424,6 +426,17 @@ export default function SubmitPage() {
   const [logoFileName, setLogoFileName] = useState("");
 
   const totalSteps = 4;
+  const turnstileSiteKey =
+    (typeof window !== "undefined" &&
+      window.ENV?.CLOUDFLARE_TURNSTILE_SITE_KEY) ||
+    "0x4AAAAAABAgVA930JNOQMwm";
+
+  const onTurnstileSuccess = (token: string) => {
+    setTurnstileToken(token);
+    if (fieldErrors.turnstile) {
+      setFieldErrors((prev) => ({ ...prev, turnstile: "" }));
+    }
+  };
 
   const handleInputChange = (field: string, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -560,6 +573,7 @@ export default function SubmitPage() {
           errors.isEuropean = "Please confirm this is European software";
         if (!formData.gdprConsent)
           errors.gdprConsent = "GDPR consent is required";
+        if (!turnstileToken) errors.turnstile = "Please complete the CAPTCHA";
         break;
     }
 
@@ -627,7 +641,8 @@ export default function SubmitPage() {
     const done =
       Boolean(formData.submitterEmail) &&
       formData.isEuropean &&
-      formData.gdprConsent;
+      formData.gdprConsent &&
+      Boolean(turnstileToken);
     return done ? "complete" : "pending";
   };
 
@@ -1147,6 +1162,22 @@ export default function SubmitPage() {
                             </span>
                           </label>
                           {renderError("gdprConsent")}
+                        </div>
+
+                        <div className="rounded-xl border border-gray-200 bg-white p-4">
+                          <p className="mb-3 text-sm font-semibold text-gray-800">
+                            Human verification
+                          </p>
+                          <div className="flex flex-col items-center gap-2 sm:items-start">
+                            <Turnstile
+                              siteKey={turnstileSiteKey}
+                              onSuccess={onTurnstileSuccess}
+                              options={{
+                                theme: "light",
+                              }}
+                            />
+                            {renderError("turnstile")}
+                          </div>
                         </div>
 
                         <div className="rounded-xl border border-blue-200 bg-blue-50 p-4">

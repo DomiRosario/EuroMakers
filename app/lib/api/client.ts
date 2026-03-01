@@ -115,6 +115,13 @@ export const api = {
       return fetchAPI<Record<string, number>>("/api/categories/counts");
     },
   },
+  turnstile: {
+    verify: (token: string) =>
+      fetchAPI<{ success: boolean }>("/api/verify-turnstile", {
+        method: "POST",
+        body: JSON.stringify({ token }),
+      }),
+  },
   contact: {
     submit: (data: ContactFormData) =>
       fetchAPI<{ success: boolean }>("/api/contact", {

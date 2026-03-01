@@ -7,15 +7,6 @@
 import { RemixBrowser } from "@remix-run/react";
 import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import { initBotId } from "botid/client/core";
-
-initBotId({
-  protect: [
-    { path: "/submit", method: "POST" },
-    { path: "/update", method: "POST" },
-    { path: "/contact", method: "POST" },
-  ],
-});
 
 startTransition(() => {
   hydrateRoot(
