@@ -43,7 +43,7 @@ export default function PrivacyPage() {
                   Depending on the form, this can include software details,
                   evidence links, your name, email address, and free-text
                   messages. We also process anti-spam verification data from
-                  Cloudflare Turnstile.
+                  Vercel BotID.
                 </p>
               </section>
 
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
                 </h2>
                 <p>
                   We use service providers to operate the platform, including
-                  Cloudflare Turnstile for anti-spam checks and GitHub for
+                  Vercel BotID for anti-spam checks and GitHub for
                   moderation workflows. These providers process only the data
                   needed to deliver their service.
                 </p>

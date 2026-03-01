@@ -7,8 +7,8 @@ import {
 import { Form, useActionData } from "@remix-run/react";
 import { useState } from "react";
 import Layout from "~/components/Layout";
-import { Turnstile } from "@marsidev/react-turnstile";
-import { serverApi, handleAPIError } from "~/lib/api/server";
+import { handleAPIError } from "~/lib/api/server";
+import { checkBotId } from "botid/server";
 import { sanitizeText, sanitizeEmail } from "~/utils/sanitize.server";
 import { sendEmail } from "~/utils/smtp2go.server";
 import { buildSocialMeta } from "~/lib/meta";
@@ -25,7 +25,6 @@ export async function action({ request }: ActionFunctionArgs) {
   const subject = sanitizeText(formData.get("subject") as string);
   const message = sanitizeText(formData.get("message") as string);
   const category = sanitizeText(formData.get("category") as string);
-  const turnstileToken = formData.get("cf-turnstile-response");
   const gdprConsent = formData.get("gdprConsent") === "on";
 
   try {
@@ -36,7 +35,6 @@ export async function action({ request }: ActionFunctionArgs) {
       !subject ||
       !message ||
       !category ||
-      !turnstileToken ||
       !gdprConsent
     ) {
       return json<ActionResponse>(
@@ -45,8 +43,10 @@ export async function action({ request }: ActionFunctionArgs) {
       );
     }
 
-    // Verify Turnstile token first since it's quick
-    await serverApi.turnstile.verify(turnstileToken as string);
+    const botCheck = await checkBotId();
+    if (botCheck.isBot) {
+      return json<ActionResponse>({ error: "Access denied" }, { status: 403 });
+    }
 
     // Prepare email content
     const emailText = `
@@ -105,14 +105,12 @@ export const meta: MetaFunction = () =>
   });
 
 export default function ContactPage() {
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [isFormValid, setIsFormValid] = useState(false);
   const actionData = useActionData<ActionResponse>();
 
   const handleFormChange = (e: React.FormEvent<HTMLFormElement>) => {
     const form = e.currentTarget;
-    const isValid = form.checkValidity() && Boolean(turnstileToken);
-    setIsFormValid(isValid);
+    setIsFormValid(form.checkValidity());
   };
 
   return (
@@ -273,16 +271,7 @@ export default function ContactPage() {
                       </div>
                     </div>
 
-                    <div className="flex justify-center md:justify-end">
-                      <Turnstile
-                        siteKey="0x4AAAAAABAgVA930JNOQMwm"
-                        onSuccess={setTurnstileToken}
-                        options={{
-                          theme: "light",
-                        }}
-                      />
                     </div>
-                  </div>
 
                   <div>
                     <button
