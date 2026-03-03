@@ -1,0 +1,19 @@
+{
+  "id": "ovhcloud",
+  "name": "OVHcloud",
+  "description": "A European cloud computing company providing VPS, dedicated servers, and other cloud services. One of Europe's largest cloud infrastructure providers.",
+  "country": "France",
+  "logo": "/images/ovhcloud_icon.png",
+  "website": "https://www.ovhcloud.com/",
+  "longDescription": "OVHcloud is a French cloud computing company that offers VPS (Virtual Private Servers), dedicated servers, and other web services to businesses and individuals. Created in 1999 by Octave Klaba, it has grown to become one of Europe's largest cloud infrastructure providers.\n\nThe company operates its own global network of data centers, with a strong focus on sustainability and energy efficiency. OVHcloud is known for its water-cooling technology that reduces energy consumption in its data centers.\n\nAs a European alternative to American cloud giants, OVHcloud emphasizes data sovereignty and GDPR compliance, making it a popular choice for European businesses and public sector organizations that need to keep their data within EU jurisdiction.",
+  "features": [
+    "Public Cloud (compute, storage, databases)",
+    "Private Cloud solutions",
+    "Dedicated servers",
+    "Web hosting",
+    "Domain name registration",
+    "Backup and disaster recovery",
+    "European data sovereignty",
+    "Global network infrastructure"
+  ]
+}

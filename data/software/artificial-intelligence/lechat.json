@@ -1,0 +1,18 @@
+{
+  "id": "lechat",
+  "name": "Le Chat",
+  "description": "A conversational AI assistant developed by Mistral AI, designed for personal and professional use with real-time web search, multilingual support, and code generation capabilities.",
+  "country": "France",
+  "logo": "/images/mistral_icon.webp",
+  "website": "https://mistral.ai/products/le-chat",
+  "longDescription": "Le Chat, developed by Mistral AI, is a versatile conversational AI assistant launched in beta in February 2024. It combines powerful language models with real-time internet search, document analysis, and image generation to assist users in tasks ranging from cooking to coding.\n\nBuilt on Mistral AI's open-source ethos, Le Chat is released under flexible licensing, making it accessible to a broad audience. It supports multiple platforms, including iOS, Android, and soon private enterprise infrastructure, and is designed to deliver fast, reliable responses with features like Flash Answers processing up to 1,000 words per second.\n\nCreated by former Google DeepMind and Meta researchers, Mistral AI aims to democratize AI technology, and Le Chat reflects this mission with its free tier and advanced capabilities, positioning it as a competitor to tools like ChatGPT.",
+  "features": [
+    "Real-time web and news search",
+    "Multilingual conversation support",
+    "Code generation and data analysis",
+    "Image generation and document scanning",
+    "Customizable AI agents",
+    "Fast response times with Flash Answers",
+    "Access to journalistic sources"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "id": "orq-ai",
+    "name": "Orq.ai",
+    "description": "Generative AI Collaboration Platform for building and optimizing LLM applications at scale.",
+    "country": "Netherlands",
+    "logo": "/images/orqai_icon.svg",
+    "website": "https://orq.ai/",
+    "longDescription": "Orq.ai is a Generative AI Collaboration Platform where software teams build, ship, and optimize LLM applications at scale. Software teams are trying to deliver LLM-based applications at scale, but they face significant gaps in tooling to support the unique demands of the LLM application development lifecycle. Mainstream DevOps tooling lacks the specialized technical capabilities and collaborative functionalities required to design, deploy, and optimize LLM-based applications effectively at scale. This is where Orq.ai comes in. By delivering the tooling needed to operate large language models (LLMs) out of the box in a user-friendly interface, Orq.ai enables both developers and non-developers alike to streamline their workflow and take GenAI from prototype to production and beyond. Launched in February 2024, Orq.ai is on a mission to bridge the gap between engineers and non-technical teams during GenAI product development workflows so that everyone can actively participate in the transformative power of Generative AI regardless of how advanced they are in coding. Orq.ai is registered in the Netherlands.",
+    "features": [
+        "Test LLMs & prompts at scale",
+        "Control release of AI updates with guardrails and data privacy safeguards",
+        "Monitor & debug agents with performance dashboards",
+        "SDKs & API for easy integration",
+        "SOC 2-certified and GDPR-compliant for data protection"
+    ]
+}

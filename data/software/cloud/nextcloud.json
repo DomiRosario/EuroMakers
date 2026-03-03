@@ -1,0 +1,18 @@
+{
+  "id": "nextcloud",
+  "name": "Nextcloud",
+  "description": "A suite of client-server software for creating and using file hosting services. It is functionally similar to Dropbox, with the primary functional difference being that Nextcloud is free and open-source.",
+  "country": "Germany",
+  "logo": "/images/logo_nextcloud_blue.svg",
+  "website": "https://nextcloud.com/",
+  "longDescription": "Nextcloud is a suite of client-server software for creating and using file hosting services. It is functionally similar to Dropbox, with the primary functional difference being that Nextcloud is free and open-source, allowing anyone to install and operate it on a private server.\n\nNextcloud is designed to be self-hosted, giving users complete control over their data. It offers features like file synchronization, calendar management, contact management, task scheduling, document editing, bookmarking, news feed aggregation, and much more through a web interface or mobile and desktop clients.\n\nThe software is developed by Nextcloud GmbH, a German company created by Frank Karlitschek, who was also the founder of ownCloud. Nextcloud is committed to open-source principles and European data protection standards.",
+  "features": [
+    "File storage and synchronization",
+    "Calendar and contact management",
+    "Collaborative document editing",
+    "Video conferencing",
+    "Task management",
+    "End-to-end encryption",
+    "Mobile and desktop clients"
+  ]
+}

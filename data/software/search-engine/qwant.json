@@ -1,0 +1,17 @@
+{
+  "id": "qwant",
+  "name": "Qwant",
+  "description": "A privacy-focused search engine that displays all results on one page, including websites, social media, and images, with a dedicated version for kids.",
+  "country": "France",
+  "logo": "/images/qwant_icon.webp",
+  "website": "https://www.qwant.com/",
+  "longDescription": "Qwant is a French search engine launched in 2013, designed to prioritize user privacy by avoiding tracking, cookies, and data profiling. Based in Paris, it offers a unique interface that consolidates web, news, social, and image results on a single page, alongside Qwant Junior for child-safe browsing. Qwant has gained attention as a European alternative to Google, aligning with EU privacy standards like GDPR. It collaborates with partners like Ecosia to enhance its offerings and is available across multiple platforms, emphasizing a clean, ad-light experience.",
+  "features": [
+    "No tracking or cookies",
+    "All-in-one results page",
+    "Qwant Junior for kids",
+    "Privacy-first search",
+    "Multi-language support",
+    "Integration with European initiatives"
+  ]
+}

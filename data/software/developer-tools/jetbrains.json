@@ -1,0 +1,20 @@
+{
+  "id": "jetbrains",
+  "name": "JetBrains",
+  "description": "A leading software company specializing in intelligent development tools for programmers and teams.",
+  "country": "Czech Republic",
+  "logo": "/images/jetbrains_icon.png",
+  "website": "https://www.jetbrains.com/",
+  "longDescription": "JetBrains is a global software company founded in 2000, headquartered in Prague, Czech Republic, and registered as JetBrains s.r.o. under Czech law. Renowned for its suite of intelligent development tools, including integrated development environments (IDEs) like IntelliJ IDEA, PyCharm, and WebStorm, JetBrains also created the Kotlin programming language, widely used in Android development. Serving over 11.4 million developers worldwide, the company offers both free and commercial editions of its tools, catering to individual developers, startups, and enterprises. With additional offices in Germany and other regions, JetBrains is committed to enhancing developer productivity and fostering innovation, maintaining a strong focus on data protection and compliance with GDPR and SOC 2 Type II standards.",
+  "features": [
+    "Intelligent code completion and inspections",
+    "Advanced refactoring tools",
+    "Integrated version control systems",
+    "Powerful debugging with multi-language support",
+    "Testing frameworks integration",
+    "Support for web and mobile development",
+    "Database tools for SQL and NoSQL",
+    "Collaboration features for teams",
+    "Cross-platform support"
+  ]
+}

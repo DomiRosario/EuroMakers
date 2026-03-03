@@ -1,0 +1,16 @@
+{
+  "id": "visitor-analytics",
+  "name": "Visitor Analytics",
+  "description": "An all-in-one website analytics tool offering detailed statistics and visitor behavior insights with a focus on ease of use.",
+  "country": "Germany",
+  "logo": "/images/visitor_analytics_icon.webp",
+  "website": "https://www.visitor-analytics.io",
+  "longDescription": "Visitor Analytics is a German-based platform designed to provide website owners, marketers, and agencies with comprehensive insights into site performance and visitor behavior. Unlike minimalist analytics tools, it combines traditional metrics—such as unique visitors and page views—with advanced features like heatmaps, session replays, and feedback polls. Built with user-friendliness in mind, Visitor Analytics caters to non-technical users while offering robust tools for data-driven decision-making. Its privacy-conscious approach ensures compliance with GDPR, CCPA, and PECR, making it a versatile choice for European businesses.",
+  "features": [
+    "Detailed visitor statistics including traffic sources and locations",
+    "Behavioral analytics with heatmaps and session recordings",
+    "Feedback module for polls and surveys",
+    "GDPR-compliant tracking with user consent options",
+    "Integration with popular CMS platforms like WordPress and Wix"
+  ]
+}

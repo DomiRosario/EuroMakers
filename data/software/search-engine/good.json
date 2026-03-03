@@ -1,0 +1,17 @@
+{
+  "id": "good",
+  "name": "GOOD",
+  "description": "A non-profit search engine donating all ad revenue to charity, built on Brave’s search index.",
+  "country": "Germany",
+  "logo": "/images/good_icon.png",
+  "website": "https://good-search.org/",
+  "longDescription": "GOOD, launched in 2022 in Berlin, Germany, is a non-profit search engine that directs 50% of its ad revenue to charitable causes. Built on Brave’s independent search index, it combines privacy with social impact, earning B Corp certification. GOOD targets users who want their searches to fund positive change, offering a simple interface and ethical mission as a European alternative.",
+  "features": [
+    "50% ad revenue to charity",
+    "Privacy-focused search",
+    "Built on Brave index",
+    "B Corp certified",
+    "Simple, ethical design",
+    "German non-profit"
+  ]
+}

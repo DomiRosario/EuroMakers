@@ -1,0 +1,16 @@
+{
+  "id": "haystack",
+  "name": "Haystack",
+  "description": "An open source AI framework for building production-ready applications with large language models.",
+  "country": "Germany",
+  "logo": "/images/haystack_icon.png",
+  "website": "https://haystack.deepset.ai",
+  "longDescription": "Haystack is an open-source framework developed by deepset, designed to help developers build production-ready applications using large language models (LLMs). It provides a modular architecture that allows for the creation of custom pipelines for tasks such as retrieval-augmented generation (RAG), document search, question answering, and more. Haystack integrates with various AI models and databases, offering flexibility and scalability for enterprise use cases. As a community-driven project, Haystack benefits from contributions from developers worldwide, ensuring continuous improvement and adaptation to the latest advancements in AI technology.",
+  "features": [
+    "Modular pipeline architecture for custom AI applications",
+    "Support for multiple AI models and vector databases",
+    "Advanced retrieval methods for efficient data access",
+    "Integration with popular platforms like Hugging Face, OpenAI, and more",
+    "Open source with a vibrant community for support and development"
+  ]
+}

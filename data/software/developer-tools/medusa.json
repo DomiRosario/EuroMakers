@@ -1,0 +1,20 @@
+{
+  "id": "medusa",
+  "name": "Medusa",
+  "description": "An open-source commerce platform for building customizable digital commerce solutions.",
+  "country": "Denmark",
+  "logo": "/images/medusa_icon.png",
+  "website": "https://medusajs.com/",
+  "longDescription": "Medusa is an open-source e-commerce platform developed in Copenhagen, Denmark, designed to provide a flexible and customizable alternative to traditional commerce solutions. Launched in 2021, Medusa enables developers to build modern digital commerce experiences with its headless architecture, supporting APIs for storefronts, admin panels, and integrations. The platform is backed by a growing community and has been adopted by businesses for its extensibility and developer-friendly approach. Medusa emphasizes performance, scalability, and user control, aligning with European values of digital sovereignty and transparency.",
+  "features": [
+    "Headless commerce architecture",
+    "Customizable APIs for storefronts and admin",
+    "Support for multiple sales channels",
+    "Built-in cart and checkout functionality",
+    "Extensible plugin system",
+    "Open-source with MIT license",
+    "Multi-currency and multi-language support",
+    "Integration with payment and shipping providers",
+    "Developer-friendly with TypeScript and Node.js"
+  ]
+}

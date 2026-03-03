@@ -1,0 +1,17 @@
+{
+  "id": "metager",
+  "name": "MetaGer",
+  "description": "A non-profit metasearch engine combining results from multiple sources, powered by green energy.",
+  "country": "Germany",
+  "logo": "/images/metager_icon.png",
+  "website": "https://metager.org/",
+  "longDescription": "MetaGer, started in 1996 in Hanover, Germany, is a veteran metasearch engine operated by the non-profit SUMA-EV. It aggregates results from various sources while prioritizing user privacy, avoiding tracking, and running on renewable energy. Open-source and transparent, MetaGer appeals to privacy advocates and eco-conscious users, offering a sustainable, community-driven alternative to commercial search engines.",
+  "features": [
+    "Metasearch aggregation",
+    "No tracking or profiling",
+    "Open-source platform",
+    "Green energy powered",
+    "Non-profit operation",
+    "Customizable search options"
+  ]
+}

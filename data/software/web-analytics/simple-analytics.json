@@ -1,0 +1,16 @@
+{
+  "id": "simple-analytics",
+  "name": "Simple Analytics",
+  "description": "A privacy-first web analytics tool that delivers essential website insights without tracking personal data.",
+  "country": "Netherlands",
+  "logo": "/images/simple_analytics_icon.webp",
+  "website": "https://simpleanalytics.com",
+  "longDescription": "Simple Analytics is a Dutch-developed web analytics solution that prioritizes user privacy and simplicity. Founded by Adriaan van Rossum, it was created to provide actionable website traffic insights without the use of cookies or personal data collection, ensuring full compliance with GDPR and other privacy regulations. Its intuitive dashboard offers metrics like page views, unique visitors, and referrers, while advanced features like event tracking and goal funnels cater to businesses of all sizes. Simple Analytics is trusted by organizations such as Michelin and the UK government for its ethical and transparent approach to analytics.",
+  "features": [
+    "Cookieless tracking for 100% privacy compliance",
+    "User-friendly dashboard with real-time data",
+    "Event tracking and goal funnels for deeper insights",
+    "Ad blocker bypass for accurate traffic measurement",
+    "Data stored exclusively in the European Economic Area (EEA)"
+  ]
+}

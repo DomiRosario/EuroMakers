@@ -1,0 +1,18 @@
+{
+  "id": "protoncalendar",
+  "name": "Proton Calendar",
+  "description": "A privacy-focused calendar service from the makers of ProtonMail. Keeps your schedule private with end-to-end encryption.",
+  "country": "Switzerland",
+  "logo": "/images/proton_calendar.svg",
+  "website": "https://proton.me/calendar",
+  "longDescription": "Proton Calendar is a secure and private calendar application developed by Proton AG, the company behind the popular encrypted email service ProtonMail. Launched in December 2019, Proton Calendar was designed to provide users with a privacy-focused alternative to mainstream calendar services.\n\nThe key feature of Proton Calendar is its end-to-end encryption, which ensures that all calendar events, titles, descriptions, locations, and participants are encrypted on the user's device. This means that not even Proton can access or read the calendar data, providing a high level of privacy and security.\n\nAs a Swiss company, Proton operates under Switzerland's strong privacy laws, which offer additional protection for user data. Proton Calendar is part of the broader Proton ecosystem, which includes email, VPN, cloud storage, and password management services, all built with a focus on privacy and security. The service is available both as a free offering with basic features and as part of Proton's premium subscriptions with additional capabilities.",
+  "features": [
+    "End-to-end encryption",
+    "Secure email service",
+    "VPN service",
+    "Password manager",
+    "Calendar with encryption",
+    "Drive storage",
+    "Swiss-based privacy"
+  ]
+}

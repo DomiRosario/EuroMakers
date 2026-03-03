@@ -1,0 +1,20 @@
+{
+  "id": "vikunja",
+  "name": "Vikunja",
+  "description": "The to-do app to organize your life. An open-source, self-hostable task management solution that's powerful yet easy to use.",
+  "country": "Germany",
+  "logo": "/images/vikunja_icon.png",
+  "website": "https://vikunja.io/",
+  "longDescription": "Vikunja is an open-source task management application designed to help individuals and teams organize their work and personal projects. The name 'Vikunja' comes from the Quechua word for a South American camelid, symbolizing reliability and endurance.\n\nDeveloped primarily in Germany, Vikunja offers a modern, feature-rich alternative to proprietary task management tools. It can be self-hosted, giving users complete control over their data, or used through Vikunja's hosted service.\n\nWhat sets Vikunja apart is its focus on flexibility and customization while maintaining ease of use. The application supports various views (kanban boards, gantt charts, lists), task relationships, recurring tasks, and team collaboration features. As an open-source project, Vikunja emphasizes privacy, data ownership, and community-driven development, making it an excellent European alternative to mainstream task management solutions.",
+  "features": [
+    "Multiple project views (list, kanban, gantt)",
+    "Task relationships and dependencies",
+    "Team collaboration",
+    "Recurring tasks",
+    "Labels and priorities",
+    "Reminders and notifications",
+    "Self-hosting option",
+    "Mobile and desktop apps",
+    "API for integrations"
+  ]
+}

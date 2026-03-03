@@ -1,6 +1,7 @@
 import { Link } from "@remix-run/react";
 import * as Flag from "country-flag-icons/react/3x2";
 import { getCountryCode } from "~/lib/countries";
+import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
 
 interface SoftwareCardProps {
   id: string;
@@ -9,6 +10,7 @@ interface SoftwareCardProps {
   categoryDisplayName: string;
   country: string;
   logo: string;
+  website: string;
 }
 
 const getFlagComponent = (countryCode: string) => {
@@ -36,6 +38,7 @@ export default function SoftwareCard({
   categoryDisplayName,
   country,
   logo,
+  website,
 }: SoftwareCardProps) {
   return (
     <Link to={`/software/${id}`} className="block h-full" aria-label={name}>
@@ -44,8 +47,9 @@ export default function SoftwareCard({
           <figure className="p-6 h-48 flex items-center justify-center bg-gray-50/50 group-hover:bg-gray-100/80 transition-colors">
             <div className="relative w-full h-full flex items-center justify-center">
               <img
-                src={logo || "/images/placeholder.svg"}
+                src={getSoftwareLogoUrl(logo, website)}
                 alt={`${name} logo`}
+                onError={handleLogoLoadError}
                 className="object-contain p-2 max-w-full max-h-full transition-transform duration-300 group-hover:scale-105"
                 width={200}
                 height={200}

@@ -1,0 +1,17 @@
+{
+  "id": "mojeek",
+  "name": "Mojeek",
+  "description": "An independent search engine with its own crawler, focusing on privacy and indexing over 1 billion pages.",
+  "country": "United Kingdom",
+  "logo": "/images/mojeek_icon.png",
+  "website": "https://www.mojeek.com/",
+  "longDescription": "Mojeek, established in 2004 in London, UK, is a rare independent search engine that builds its own index, having crawled over 6 billion pages. Unlike many competitors, it doesn’t rely on third-party results, offering a unique, privacy-focused alternative. Mojeek avoids collecting IP addresses, click data, or search histories, appealing to users wary of Big Tech. Based in the UK, it’s grown steadily as a niche player with a commitment to transparency and autonomy in search technology.",
+  "features": [
+    "Independent web crawler",
+    "No tracking or data collection",
+    "Over 6 billion pages indexed",
+    "Simple, clean interface",
+    "Privacy-first design",
+    "UK-based development"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "summiz-ai",
+  "name": "Summiz.ai",
+  "description": "Summiz.ai is a platform that provides AI-generated summaries for videos and podcasts, making information consumption more efficient.",
+  "country": "Spain",
+  "logo": "/images/summiz_icon.jpg",
+  "website": "https://www.summiz.ai/",
+  "longDescription": "Summiz provides concise and holistic summaries of videos and podcasts, making information consumption more efficient for professionals and knowledge enthusiasts. Our summaries are not just a list of key points; they come with a concise overview, a comprehensive breakdown, and a full-length article with voice narration. We support content from YouTube and aim to save you hours of filler content, helping you learn fast and get smarter.",
+  "features": [
+    "AI-powered summarization for videos and podcasts",
+    "Supports YouTube content",
+    "Credit-based pricing model",
+    "High-quality, human-like summaries",
+    "Online reader for summaries",
+    "Refund policy for quality assurance"
+  ]
+}

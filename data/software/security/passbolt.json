@@ -1,0 +1,19 @@
+{
+  "id": "passbolt",
+  "name": "Passbolt",
+  "description": "An open-source password manager designed for teams, focusing on security and collaboration.",
+  "country": "Luxembourg",
+  "logo": "/images/passbolt_icon.svg",
+  "website": "https://www.passbolt.com/",
+  "longDescription": "Passbolt is an open-source password manager developed in Luxembourg City, Luxembourg, since 2016. It is designed for teams, offering secure password sharing and management with end-to-end encryption. Passbolt integrates with browsers and supports self-hosting, giving users full control over their data. Its focus on security, privacy, and collaboration makes it a popular choice for organizations prioritizing data protection. As an open-source project, Passbolt aligns with European values of transparency, privacy, and digital sovereignty.",
+  "features": [
+    "End-to-end encryption for passwords",
+    "Secure password sharing for teams",
+    "Browser extensions for Chrome, Firefox, Edge",
+    "Self-hosting option for data control",
+    "Open-source with AGPL-3.0 license",
+    "Role-based access control",
+    "Audit logs for security monitoring",
+    "Mobile apps for iOS and Android"
+  ]
+}

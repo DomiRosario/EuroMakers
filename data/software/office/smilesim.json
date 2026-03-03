@@ -1,0 +1,21 @@
+{
+    "id": "smilesim",
+    "name": "SmileSIM",
+    "description": "Cloud-based dental practice management platform with scheduling, patient records, treatment planning, and financial analytics.",
+    "country": "Romania",
+    "logo": "/images/smilesim_icon.png",
+    "website": "https://smilesim.com/",
+    "longDescription": "SmileSIM is a comprehensive cloud-based dental practice management platform designed to streamline operations for dental clinics and multi-location practices. Based in Romania, it offers an intelligent drag-and-drop calendar, automated SMS and email reminders, and a dedicated patient mobile app to enhance scheduling and reduce no-shows by up to 40%. The SmileSIM Cloud securely stores dental records, including X-rays, CBCT scans, and clinical photos, accessible from any device, with end-to-end encryption and compliance with GDPR and ISO/IEC 27018. Clinical tools include an interactive odontogram and visual treatment-plan builder to improve patient understanding and case acceptance. The Studio module enables photo annotation and real-time collaboration, ideal for interdisciplinary workflows. For practice managers, SmileSIM provides real-time financial dashboards, performance analytics, payment management with instalment plans, and staff scheduling, all within a bilingual (English/Romanian) interface that is intuitive and cloud-deployed for seamless updates. Suitable for single-chair surgeries and growing practices, SmileSIM enhances efficiency, patient satisfaction, and profitability.",
+    "features": [
+        "Intelligent drag-and-drop calendar",
+        "Automated SMS and email reminders",
+        "Encrypted electronic health records",
+        "Dedicated patient mobile app",
+        "Interactive odontogram and treatment-plan builder",
+        "Studio module for photo annotation and collaboration",
+        "Real-time financial dashboards and analytics",
+        "Payment management with instalment plans",
+        "Staff scheduler with vacation and time-off management",
+        "Bilingual English/Romanian interface"
+    ]
+}

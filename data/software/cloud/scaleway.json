@@ -1,0 +1,20 @@
+{
+  "id": "scaleway",
+  "name": "Scaleway",
+  "description": "A cloud provider offering a comprehensive range of cloud services including compute, storage, databases, and more with a focus on sustainability.",
+  "country": "France",
+  "logo": "/images/scaleway_icon.png",
+  "website": "https://www.scaleway.com/",
+  "longDescription": "Scaleway is a French cloud computing company that offers a wide range of infrastructure and platform services. Created in 2015 as a subsidiary of Iliad Group (the parent company of Free, a major French telecom), Scaleway has quickly established itself as one of Europe's innovative cloud providers.\n\nThe company is known for its developer-friendly approach, competitive pricing, and focus on environmental sustainability. Scaleway operates eco-designed data centers powered by renewable energy sources, with a commitment to reducing the environmental impact of cloud computing.\n\nScaleway offers a comprehensive suite of cloud services including compute instances, Kubernetes, object storage, databases, and serverless functions. As a European provider, Scaleway emphasizes data sovereignty and GDPR compliance, making it an attractive option for European businesses and organizations concerned about where their data is stored and processed.",
+  "features": [
+    "Compute instances (virtual servers)",
+    "Kubernetes Engine",
+    "Object and block storage",
+    "Managed databases",
+    "Serverless computing",
+    "Load balancing",
+    "IoT hub",
+    "Eco-friendly data centers",
+    "European data sovereignty"
+  ]
+}

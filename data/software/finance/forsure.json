@@ -1,0 +1,16 @@
+{
+    "id": "forsure",
+    "name": "ForSURE",
+    "description": "SaaS platform for automated EPR compliance reporting across EU countries with multi-category support.",
+    "country": "Netherlands",
+    "logo": "/images/forsure_icon.png",
+    "website": "https://for-sure.net/",
+    "longDescription": "ForSURE is a SaaS platform designed to help businesses comply with Extended Producer Responsibility (EPR) regulations across the European Union. Founded in 2024 and based in Utrecht, Netherlands, ForSURE automates the creation of EPR reports based on product information, order lists, and return lists, allowing users to generate reports by product categories, specific legislation per country, and chosen timeframes. These reports can be automatically delivered to governing bodies, ensuring compliance with varying EU regulations. ForSURE streamlines the reporting process for WEEE, Batteries, Packaging (SUP), and Textile, reducing the time required from 39 days to just 6 days for 300 reports, achieving a 95% reduction in reporting time. Tailored for SMEs, including e-commerce, distributors, importers, and manufacturers, ForSURE offers a user-centric design that simplifies compliance and supports sustainable, eco-conscious operations. The platform is built on robust technology capable of handling large volumes of data and includes tools for eco-modulation to optimize costs. Additionally, ForSURE provides personalized demos, educational resources, and expert support to enhance understanding of EPR requirements and ensure compliance.",
+    "features": [
+        "Automated EPR Reporting",
+        "Multi-Country Compliance",
+        "Support for WEEE, Batteries, Packaging, Textile",
+        "Time-Saving Reporting Tools",
+        "EPR Education and Demos"
+    ]
+}

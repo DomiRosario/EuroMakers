@@ -1,0 +1,17 @@
+{
+  "id": "sage",
+  "name": "Sage",
+  "description": "Business management software with powerful accounting tools for small and medium enterprises.",
+  "country": "United Kingdom",
+  "logo": "/images/sage_icon.png",
+  "website": "https://www.sage.com/",
+  "longDescription": "Sage, established in 1981 in Newcastle upon Tyne, UK, is a global leader in business management software, offering accounting, payroll, and financial management solutions tailored for small and medium enterprises. Known for its user-friendly interface and compliance with UK and European regulations, Sage empowers businesses to streamline financial operations with cloud-based and on-premise options.",
+  "features": [
+    "Cloud and on-premise accounting",
+    "Payroll processing",
+    "VAT compliance",
+    "Financial reporting",
+    "Integration with banking",
+    "Scalable for SMEs"
+  ]
+}

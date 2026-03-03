@@ -1,0 +1,21 @@
+{
+  "id": "windsor",
+  "name": "Windsor.ai",
+  "description": "Windsor.ai is a platform that automates data movement and provides marketing attribution insights by connecting and unifying data from multiple sources.",
+  "country": "Switzerland",
+  "logo": "/images/windsor_icon.webp",
+  "website": "https://windsor.ai/",
+  "longDescription": "Windsor.ai automates marketing data integration with ready-to-use connectors that adapt instantly to changes in channels, schemas, and APIs—ensuring consistent, reliable access to performance metrics. By continuously orchestrating and harmonizing data from ad platforms, web analytics, CRMs, and e-commerce tools into any data warehouse, BI solution, or spreadsheet, Windsor.ai empowers analysts and growth teams to focus on insights, not infrastructure.",
+  "features": [
+    "Connect to 325+ data sources",
+    "No-code ELT connectors",
+    "Automate data movement and reporting",
+    "Centralize data from multiple sources",
+    "Real-time, error-free data pipelines",
+    "Cross-channel data integration",
+    "Customizable dashboard templates",
+    "Support for popular destinations like Looker Studio, Power BI, Google BigQuery, etc.",
+    "Scalable data pipelines",
+    "Marketing attribution insights"
+  ]
+}

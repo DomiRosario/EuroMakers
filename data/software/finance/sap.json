@@ -1,0 +1,17 @@
+{
+  "id": "sap",
+  "name": "SAP",
+  "description": "Enterprise-grade ERP software with advanced accounting and financial management modules.",
+  "country": "Germany",
+  "logo": "/images/sap_icon.png",
+  "website": "https://www.sap.com/",
+  "longDescription": "SAP, founded in 1972 in Walldorf, Germany, is a global leader in enterprise resource planning software, offering sophisticated accounting and financial management tools within its ERP suites. Catering to large enterprises and mid-sized businesses, SAP ensures compliance with European regulations and provides real-time financial insights, making it a cornerstone for complex financial operations.",
+  "features": [
+    "Enterprise-grade ERP",
+    "Advanced financial reporting",
+    "Multi-currency accounting",
+    "Tax compliance",
+    "Real-time analytics",
+    "Integration with supply chain"
+  ]
+}

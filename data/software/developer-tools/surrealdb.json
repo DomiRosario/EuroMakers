@@ -1,0 +1,21 @@
+{
+  "id": "surrealdb",
+  "name": "SurrealDB",
+  "description": "SurrealDB is an innovative scalable database that combines traditional database capabilities with real-time features and advanced querying.",
+  "country": "United Kingdom",
+  "logo": "/images/surrealdb_icon.png",
+  "website": "https://surrealdb.com/",
+  "longDescription": "SurrealDB is a scalable, distributed database system that combines the capabilities of a traditional database with real-time features, advanced graph querying, and ACID guarantees. It supports multiple query languages, including its own SurrealQL, and provides built-in support for WebSocket connections, making it ideal for real-time applications. The database can run in various modes - from single node to distributed clusters - and offers features like time-travel queries, geospatial queries, and full-text search.",
+  "features": [
+    "Multi-model database",
+    "Real-time capabilities",
+    "Graph relationships",
+    "ACID compliance",
+    "WebSocket support",
+    "Time-travel queries",
+    "Geospatial queries",
+    "Full-text search",
+    "Multiple programming languages support",
+    "Distributed architecture"
+  ]
+}

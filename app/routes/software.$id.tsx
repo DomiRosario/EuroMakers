@@ -11,6 +11,7 @@ import * as Flag from "country-flag-icons/react/3x2";
 import { getCountryCode } from "~/lib/countries";
 import { mapRawSoftwareToSoftware } from "~/lib/software";
 import { buildSocialMeta } from "~/lib/meta";
+import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
 
 // Kept local getFlagComponent
 const getFlagComponent = (countryCode: string) => {
@@ -115,8 +116,9 @@ export default function SoftwareDetail() {
               {/* Logo */}
               <div className="w-24 h-24 md:w-32 md:h-32 flex-shrink-0 bg-white rounded-lg shadow-sm p-4 flex items-center justify-center">
                 <img
-                  src={software.logo || "/images/placeholder.svg"}
+                  src={getSoftwareLogoUrl(software.logo, software.website)}
                   alt={`${software.name} logo`}
+                  onError={handleLogoLoadError}
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
@@ -233,6 +235,7 @@ export default function SoftwareDetail() {
                     categoryDisplayName={item.categoryDisplayName}
                     country={item.country}
                     logo={item.logo || "/images/placeholder.svg"}
+                    website={item.website}
                   />
                 ))}
               </div>

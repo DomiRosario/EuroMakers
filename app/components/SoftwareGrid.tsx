@@ -17,6 +17,7 @@ export default function SoftwareGrid({ software }: SoftwareGridProps) {
           categoryDisplayName={item.categoryDisplayName}
           country={item.country}
           logo={item.logo}
+          website={item.website}
         />
       ))}
     </div>

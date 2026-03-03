@@ -1,0 +1,20 @@
+{
+  "id": "lago",
+  "name": "Lago",
+  "description": "An open-source billing API for subscription and usage-based billing in SaaS applications.",
+  "country": "France",
+  "logo": "/images/lago_icon.png",
+  "website": "https://www.getlago.com/",
+  "longDescription": "Lago is an open-source billing API developed in Paris, France, launched in 2021. It is designed for SaaS companies, providing a flexible solution for subscription and usage-based billing. Lago supports real-time billing, invoicing, and payment integrations, with a focus on developer ease and customization. Backed by Y Combinator, Lago has gained traction for its transparency and cost-efficiency, offering an alternative to proprietary billing systems. Its open-source model aligns with European values of digital sovereignty and innovation.",
+  "features": [
+    "Subscription and usage-based billing",
+    "Real-time billing and invoicing",
+    "Customizable billing workflows",
+    "Integration with payment gateways",
+    "Open-source with Apache-2.0 license",
+    "Multi-currency support",
+    "Developer-friendly API",
+    "Scalable for growing SaaS businesses",
+    "Transparent pricing and usage tracking"
+  ]
+}

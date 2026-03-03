@@ -1,0 +1,17 @@
+{
+  "id": "swisscows",
+  "name": "Swisscows",
+  "description": "A family-friendly semantic search engine with a focus on privacy and regional results.",
+  "country": "Switzerland",
+  "logo": "/images/swisscows_icon.png",
+  "website": "https://swisscows.com/",
+  "longDescription": "Swisscows, launched in 2014 from Egnach, Switzerland, is a privacy-oriented search engine that uses semantic technology to provide ‘answer-like’ results. It prioritizes family-friendly content, blocks adult material, and avoids tracking users, with servers located in Switzerland for maximum data protection. Swisscows caters to regional preferences and has gained traction among users valuing Swiss privacy standards, offering a distinct alternative to mainstream engines.",
+  "features": [
+    "Semantic search technology",
+    "No tracking or geo-targeting",
+    "Family-friendly filtering",
+    "Swiss-hosted servers",
+    "Region-specific results",
+    "Privacy under Swiss law"
+  ]
+}

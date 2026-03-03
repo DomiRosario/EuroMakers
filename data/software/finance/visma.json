@@ -1,0 +1,17 @@
+{
+  "id": "visma",
+  "name": "Visma",
+  "description": "A leading provider of cloud-based accounting and payroll solutions for European businesses.",
+  "country": "Norway",
+  "logo": "/images/visma_icon.png",
+  "website": "https://www.visma.com/",
+  "longDescription": "Founded in 1996 in Oslo, Norway, Visma is a powerhouse in cloud-based business software, offering a suite of accounting and payroll solutions like Tripletex, eAccounting, and Netvisor. Visma focuses on automation and compliance with local regulations, making it ideal for SMEs and accounting firms seeking efficiency and scalability.",
+  "features": [
+    "Cloud-based accounting",
+    "Payroll management",
+    "Local tax compliance",
+    "Automation tools",
+    "Multi-country support",
+    "Integration with third-party apps"
+  ]
+}

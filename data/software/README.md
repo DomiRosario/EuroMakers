@@ -1,54 +1,64 @@
 # Software Data Directory
 
-This directory contains the curated sample software dataset used by EuroMakers.
+This directory contains JSON files for all software products displayed on the website. Each file represents a single software product and is automatically included in the website when added to this directory.
 
-## File Layout
+## How to Add New Software
 
-Each entry is a JSON file stored under:
-
-- `data/software/<category>/<id>.json`
-
-## JSON Structure
+To add a new software product to the website, simply create a new JSON file in this directory with the following structure:
 
 ```json
 {
   "id": "unique-id",
   "name": "Software Name",
   "description": "A short description of the software (1-2 sentences).",
+  "category": "Category",
   "country": "Country",
-  "logo": "/images/placeholder.svg",
+  "logo": "/images/logo-filename.svg",
   "website": "https://website-url.com",
-  "longDescription": "A detailed description of the software.",
-  "features": ["Feature 1", "Feature 2", "Feature 3"]
+  "longDescription": "A detailed description of the software. You can use \\n\\n to create paragraph breaks.",
+  "features": ["Feature 1", "Feature 2", "Feature 3", "Feature 4", "Feature 5"]
 }
 ```
 
-## Contribution Rules
+## Important Notes
 
-1. Keep filename equal to the `id` field (for example `nextcloud.json` for `"id": "nextcloud"`).
-2. Keep logos as `/images/placeholder.svg` unless redistribution rights are explicitly confirmed.
-3. Use only public, verifiable information.
-4. Do not commit personal contact information, secrets, or private moderation data.
+1. The filename should match the `id` field in the JSON file (e.g., `nextcloud.json` for a software with `"id": "nextcloud"`).
+2. Make sure to upload the logo image to the `/public/images/` directory.
+3. The website will automatically create a dedicated page for the software at `/software/[id]`.
+4. The software will automatically appear in the software listing page and relevant category pages.
+5. Changes to existing JSON files will be reflected on the website automatically.
 
-## Allowed Categories
+## Revalidation
 
-- `artificial-intelligence`
-- `cloud`
-- `communication`
-- `design`
-- `developer-tools`
-- `entertainment`
-- `finance`
-- `marketing`
-- `office`
-- `personal-finances`
-- `productivity`
-- `search-engine`
-- `security`
-- `web-analytics`
-- `web-browsers`
+The website uses Incremental Static Regeneration (ISR) to automatically update pages when data changes. By default, pages are revalidated every 60 seconds.
 
-## Notes
+If you need to manually trigger revalidation after adding new software, you can use the revalidation API:
 
-- The app automatically indexes files from these category folders.
-- For additional workflow details, see the repository [README.md](../../README.md).
+```
+GET /api/revalidate?token=your-secret-token&path=/software
+```
+
+For more information about revalidation, see the main [README.md](../../README.md).
+
+## Categories
+
+Please use one of the following category IDs:
+
+- ai (Artificial Intelligence)
+- cloud
+- productivity
+- security
+- design
+- development
+- communication
+- business
+- education
+- entertainment
+- multimedia
+- utilities
+- finance
+- web-browsers (Web Browsers)
+
+## Countries
+
+For the country field, use the country where the software is primarily developed or where the company is headquartered. For multi-national projects, you can use "Multiple EU Countries".

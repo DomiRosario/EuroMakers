@@ -1,0 +1,17 @@
+{
+  "id": "yooz",
+  "name": "Yooz",
+  "description": "Cloud-based accounts payable automation software leveraging AI for invoice processing.",
+  "country": "France",
+  "logo": "/images/yooz_icon.png",
+  "website": "https://getyooz.com/",
+  "longDescription": "Yooz, started in 2009 in Aimargues, France, specializes in cloud-based accounts payable automation, using AI and RPA to streamline invoice processing and financial workflows. Serving over 5,000 customers, Yooz is designed for businesses seeking efficiency and compliance with European financial standards, with a user-friendly platform that integrates seamlessly with existing systems.",
+  "features": [
+    "AI-powered invoice processing",
+    "Cloud-based automation",
+    "Multi-currency support",
+    "Integration with ERP systems",
+    "Real-time reporting",
+    "GDPR compliance"
+  ]
+}

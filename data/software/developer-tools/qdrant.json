@@ -1,0 +1,20 @@
+{
+  "id": "qdrant",
+  "name": "Qdrant",
+  "description": "A high-performance vector database for AI applications, enabling efficient similarity search.",
+  "country": "Germany",
+  "logo": "/images/qdrant_icon.png",
+  "website": "https://qdrant.tech/",
+  "longDescription": "Qdrant is an open-source vector database developed in Berlin, Germany, launched in 2021. It is designed for AI applications, providing high-performance similarity search for embeddings and neural network encoders. Qdrant supports scalable deployments with Kubernetes and integrates with tools like Jina AI for enhanced search capabilities. Qdrant is a leading solution for semantic search and recommendation systems. Its open-source nature and European origin align with values of transparency and digital sovereignty.",
+  "features": [
+    "High-performance vector similarity search",
+    "Support for embeddings and neural encoders",
+    "Scalable with Kubernetes-native architecture",
+    "Integration with Jina AI embeddings",
+    "Open-source with Apache-2.0 license",
+    "Flexible deployment (cloud, hybrid, on-premises)",
+    "Efficient data handling with quantization",
+    "API for easy integration",
+    "Built in Rust for speed and reliability"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+    "id": "mockoon",
+    "name": "Mockoon",
+    "description": "Mockoon is an open-source API mocking platform that helps developers and QA teams simulate APIs locally or in the cloud to speed up development and testing.",
+    "country": "Luxembourg",
+    "logo": "/images/mockoon_icon.jpeg",
+    "website": "https://mockoon.com/",
+    "longDescription": "Mockoon is the easiest and fastest way to mock REST APIs, helping developers and QA teams build and test applications without waiting for backend services. With a focus on simplicity, performance, and developer experience, Mockoon provides a powerful open-source desktop app and CLI to simulate APIs locally, as well as a Cloud platform for deploying mocks and sharing environments with your team.\r\n\r\nBy removing external dependencies and enabling dynamic, realistic responses, Mockoon accelerates development cycles, improves test coverage, and reduces the need for complex staging environments.\r\n\r\nUsed by thousands of developers and organizations around the world, Mockoon is a privacy-focused, lightweight alternative to overcomplicated mocking tools. Whether you're prototyping a frontend, testing edge cases, or running automated tests in CI, Mockoon helps you work faster, together.",
+    "features": [
+        "EU-based",
+        "GDPR-compliant",
+        "Open-source and privacy-focused",
+        "No-code API-mocking in seconds",
+        "Share mocks with your whole team",
+        "Cloud or local deployment options",
+        "Templating and dynamic responses",
+        "Works offline, cross-platform",
+        "Boosts QA speed and developer autonomy"
+    ]
+}

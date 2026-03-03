@@ -1,0 +1,20 @@
+{
+  "id": "photomator",
+  "name": "Photomator",
+  "description": "A powerful yet intuitive photo editing application for Mac, iPhone, and iPad, offering advanced tools for color adjustment, retouching, and photo management.",
+  "country": "Lithuania",
+  "logo": "/images/photomator_icon.webp",
+  "website": "https://www.pixelmator.com/photomator/",
+  "longDescription": "Photomator is a professional photo editing application developed by the Pixelmator Team in Lithuania. Designed to empower photographers and enthusiasts, it provides a seamless and intuitive platform for editing and managing photo libraries. Launched with a focus on advanced color adjustments, AI-driven selections, and efficient batch editing, Photomator supports over 750 RAW image formats. Its robust toolset includes Super Resolution, Denoise, and a Repair tool for effortless retouching. With deep integration into the Apple ecosystem, Photomator ensures a fluid experience across Mac, iPhone, and iPad, making it a go-to solution for modern photography workflows.",
+  "features": [
+    "Powerful, nondestructive color adjustments",
+    "AI-powered selective adjustments (subject, sky, background)",
+    "Batch editing capabilities",
+    "Repair tool for removing objects",
+    "Super Resolution and Denoise for image enhancement",
+    "Support for over 750 RAW formats",
+    "Customizable presets for various styles",
+    "Native integration with Apple ecosystem",
+    "Fast performance with machine learning features"
+  ]
+}

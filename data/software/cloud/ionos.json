@@ -1,0 +1,20 @@
+{
+  "id": "ionos",
+  "name": "IONOS",
+  "description": "A cloud infrastructure and web hosting provider offering domain registration, website building tools, and cloud services for businesses of all sizes.",
+  "country": "Germany",
+  "logo": "/images/ionos_icon.png",
+  "website": "https://www.ionos.com/",
+  "longDescription": "IONOS (formerly known as 1&1 IONOS) is a German web hosting and cloud provider offering domain registration, website building tools, and various hosting solutions for businesses and individuals. The company was created in 1988 and has grown to become one of Europe's leading digital service providers.\n\nIONOS offers a wide range of services from simple web hosting for small businesses to enterprise-grade cloud infrastructure. The company operates its own data centers across Europe and the United States, with a strong focus on security, reliability, and data protection in accordance with European standards.\n\nAs part of United Internet AG, IONOS represents a significant European player in the cloud and hosting market, providing an alternative to US-based providers and emphasizing data sovereignty for European customers.",
+  "features": [
+    "Web hosting services",
+    "Domain registration",
+    "Website builder",
+    "E-commerce solutions",
+    "Cloud servers and storage",
+    "Managed WordPress hosting",
+    "Email hosting",
+    "GDPR-compliant infrastructure",
+    "24/7 customer support"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "morgen",
+  "name": "Morgen",
+  "description": "A productivity app combining calendar, task management, and scheduling, designed to simplify time management with AI-powered planning and multi-platform support.",
+  "country": "Switzerland",
+  "logo": "/images/morgen_icon.png",
+  "website": "https://www.morgen.so/",
+  "longDescription": "Morgen Calendar is a productivity app launched in 2019 as a spin-off from ETH Zurich, integrating calendar, task management, and scheduling into a single platform. It aims to streamline time management with AI-powered planning and real-time sync across devices, supporting professionals and students alike.\n\nBased in Zurich, Switzerland, Morgen is available on macOS, Windows, Linux, iOS, and Android, offering a seamless experience with integrations like Google Calendar and Todoist. It emphasizes privacy with Swiss data protection laws and features a clean, intuitive interface.\n\nDeveloped by a Swiss company, Morgen has grown since 2020 into a well-established SaaS, focusing on user-friendly design and innovative features like AI planning and availability sharing, positioning it as a strong competitor to traditional calendar tools.",
+  "features": [
+    "AI-powered daily planning",
+    "Multi-calendar integration",
+    "Drag-and-drop task scheduling",
+    "Real-time sync across devices",
+    "Availability sharing and scheduling links",
+    "Integrations with Todoist, Notion, Spotify",
+    "Support for multiple time zones"
+  ]
+}

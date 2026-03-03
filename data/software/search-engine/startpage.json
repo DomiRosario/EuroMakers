@@ -1,0 +1,17 @@
+{
+  "id": "startpage",
+  "name": "Startpage",
+  "description": "A privacy-centric search engine that delivers Google results without tracking user activity.",
+  "country": "Netherlands",
+  "logo": "/images/startpage_icon.webp",
+  "website": "https://www.startpage.com/",
+  "longDescription": "Startpage, founded in 2006 in The Hague, Netherlands, is a privacy-first search engine that leverages Google’s search results while ensuring no user data is collected or tracked. Initially launched as Ixquick, it rebranded to Startpage and offers features like anonymous browsing and a proxy service for added security. Aligned with Dutch and EU privacy laws, it’s a popular choice for users seeking Google-like functionality without surveillance, available across web and mobile platforms.",
+  "features": [
+    "No user tracking",
+    "Google results proxy",
+    "Anonymous view feature",
+    "No IP or data logging",
+    "Multi-platform access",
+    "EU privacy compliance"
+  ]
+}

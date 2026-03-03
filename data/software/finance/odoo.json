@@ -1,0 +1,17 @@
+{
+  "id": "odoo",
+  "name": "Odoo",
+  "description": "An open-source ERP suite with comprehensive accounting modules for businesses of all sizes.",
+  "country": "Belgium",
+  "logo": "/images/odoo_icon.png",
+  "website": "https://www.odoo.com/",
+  "longDescription": "Odoo, launched in 2005 in Grand-Rosière, Belgium, is a leading open-source ERP platform that offers robust accounting software alongside CRM, inventory, and project management tools. Designed for flexibility, it caters to startups, SMEs, and enterprises, ensuring compliance with European financial regulations. Its modular approach allows businesses to customize features, making it a popular choice for those seeking scalable, cost-effective solutions.",
+  "features": [
+    "Open-source ERP",
+    "Accounting and invoicing",
+    "Multi-currency support",
+    "Tax compliance",
+    "Integration with CRM and inventory",
+    "Customizable modules"
+  ]
+}

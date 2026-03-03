@@ -1,0 +1,18 @@
+{
+  "id": "vivaldi",
+  "name": "Vivaldi",
+  "description": "A highly customizable web browser built on Chromium, focusing on power users with features like tab stacking, notes, and web panels.",
+  "country": "Norway",
+  "logo": "/images/vivaldi_icon.png",
+  "website": "https://vivaldi.com/",
+  "longDescription": "Vivaldi is a freeware, cross-platform web browser developed by Vivaldi Technologies, founded by former Opera Software co-founder and CEO Jon Stephenson von Tetzchner. The browser emphasizes customization, privacy, and power-user features.\n\nBuilt on Chromium, Vivaldi combines the compatibility of Chrome with unique features like tab stacking, web panels, notes integration, and extensive keyboard shortcuts. It offers robust privacy features and does not track user activity.\n\nVivaldi Technologies is headquartered in Oslo, Norway, adhering to strong European privacy standards. The company emphasizes user privacy and transparency in its operations.",
+  "features": [
+    "Tab stacking and tiling",
+    "Built-in notes and screenshot tools",
+    "Web panels",
+    "Extensive keyboard shortcuts",
+    "Chrome extension support",
+    "Customizable UI",
+    "Syncing across devices"
+  ]
+}
