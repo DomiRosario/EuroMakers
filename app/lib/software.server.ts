@@ -7,8 +7,49 @@ import { safetlyValidateSoftware } from "./validation.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function isReadableDirectory(directoryPath: string): boolean {
+  if (!fs.existsSync(directoryPath)) return false;
+  try {
+    return fs.statSync(directoryPath).isDirectory();
+  } catch {
+    return false;
+  }
+}
+
+function resolveSoftwareDirectory(): string | null {
+  const configuredDirectory = process.env.SOFTWARE_DATA_DIR?.trim();
+  const candidates = [
+    configuredDirectory,
+    path.resolve(process.cwd(), "data/software"),
+    path.resolve(__dirname, "../../data/software"),
+    path.resolve(__dirname, "../../../data/software"),
+    "/var/task/data/software",
+  ].filter((candidate): candidate is string => Boolean(candidate));
+
+  for (const candidate of candidates) {
+    if (isReadableDirectory(candidate)) return candidate;
+  }
+
+  return null;
+}
+
 // Path to the software data directory
-const softwareDirectory = path.resolve(__dirname, "../../data/software");
+const softwareDirectory = resolveSoftwareDirectory();
+
+function getCategoryFolders(): string[] {
+  if (!softwareDirectory) {
+    console.error(
+      "Software data directory not found. Checked SOFTWARE_DATA_DIR, cwd/data/software, and runtime fallbacks.",
+    );
+    return [];
+  }
+
+  return fs
+    .readdirSync(softwareDirectory)
+    .filter((item) =>
+      fs.statSync(path.join(softwareDirectory, item)).isDirectory(),
+    );
+}
 
 // Define the Software interface as it's expected by mapRawSoftwareToSoftware (like RawSoftware in software.ts)
 // This represents the data structure after being read from JSON and before full mapping.
@@ -49,14 +90,12 @@ export interface Software {
  */
 export async function getAllSoftwareServer(): Promise<ServerRawSoftware[]> {
   try {
+    if (!softwareDirectory) return [];
+
     const allSoftware: ServerRawSoftware[] = [];
     const validationErrors: Array<{ file: string; errors: string[] }> = [];
 
-    const categoryFolders = fs
-      .readdirSync(softwareDirectory)
-      .filter((item) =>
-        fs.statSync(path.join(softwareDirectory, item)).isDirectory(),
-      );
+    const categoryFolders = getCategoryFolders();
 
     for (const categoryFolderName of categoryFolders) {
       const categoryPath = path.join(softwareDirectory, categoryFolderName);
@@ -136,11 +175,9 @@ export async function getSoftwareByIdServer(
   id: string,
 ): Promise<ServerRawSoftware | null> {
   try {
-    const categoryFolders = fs
-      .readdirSync(softwareDirectory)
-      .filter((item) =>
-        fs.statSync(path.join(softwareDirectory, item)).isDirectory(),
-      );
+    if (!softwareDirectory) return null;
+
+    const categoryFolders = getCategoryFolders();
 
     for (const categoryFolderName of categoryFolders) {
       const filePath = path.join(
@@ -245,6 +282,13 @@ export async function getSoftwareByCategoryServer(
   category: string, // This should be the category ID (folder name)
 ): Promise<ServerRawSoftware[]> {
   try {
+    if (!softwareDirectory) {
+      console.error(
+        "Software data directory not found while loading category.",
+      );
+      return [];
+    }
+
     const normalizedCategory = category // Assuming category param is already the folder name
       .toLowerCase()
       .replace(/[^a-z0-9-]/g, "-"); // This normalization might still be useful if input isn't clean
