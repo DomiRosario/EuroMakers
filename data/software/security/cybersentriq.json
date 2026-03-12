@@ -1,0 +1,20 @@
+{
+  "id": "cybersentriq",
+  "name": "CyberSentriq",
+  "description": "CyberSentriq is the unified brand created through the merger of TitanHQ and Redstor, bringing together more than 25 years of award‑winning security and data protection innovation. Today, CyberSentriq protects over 150,000 SMBs and supports more than",
+  "category": "security",
+  "country": "Ireland",
+  "logo": "/images/cybersentriq_icon.png",
+  "website": "https://www.cybersentriq.com/",
+  "longDescription": "CyberSentriq is a unified cybersecurity and data protection platform purpose‑built for Managed Service Providers (MSPs). It brings together essential security, resilience, and user‑risk controls into a single, cloud‑based solution designed to simplify operations, improve protection, and reduce tool sprawl across customer environments. At its core, CyberSentriq helps MSPs secure Microsoft 365 and email‑centric workloads by combining backup and recovery, advanced email security, threat protection, data archiving, and security awareness training within one centrally managed platform. This unified approach enables MSPs to deliver consistent protection, streamline onboarding, and manage multiple customers efficiently from a single interface. CyberSentriq supports Microsoft 365 backup and recovery to help MSPs protect critical business data against accidental deletion, ransomware, and data loss scenarios. Secure, reliable recovery capabilities allow service providers to restore emails, files, and user data quickly, supporting business continuity and regulatory requirements. Advanced email security and threat protection form another core pillar of the platform. CyberSentriq is designed to help MSPs defend customers against phishing, malware, business email compromise, and other email‑borne threats that remain a primary attack vector for organisations of all sizes. By combining layered protection with centralised management, MSPs can reduce risk while maintaining operational efficiency. CyberSentriq also includes email archiving and data retention capabilities, helping MSPs support compliance, eDiscovery, and long‑term data governance requirements. Centralised archiving allows customers to retain and search historical communications without relying solely on native mailbox storage. To address the human layer of security, CyberSentriq integrates security awareness training, enabling MSPs to help end users recognise and respond to common cyber threats. By combining technical controls with user education, the platform supports a more complete security posture across managed environments. Built specifically with MSP workflows in mind, CyberSentriq focuses on scalability, multi‑tenant management, and simplified administration. This allows service providers to standardise their security offering, reduce complexity, and deliver measurable value to customers without managing multiple disconnected tools. CyberSentriq is ideal for MSPs looking to offer an integrated, easy‑to‑manage cybersecurity and data protection solution that aligns with modern cloud‑first environments, particularly Microsoft 365‑centric organisations.",
+  "features": [
+    "Phishing Protection",
+    "• Integrated Cloud Email Security (ICES)",
+    "• MX Email Threat Protection",
+    "• Security Awareness Training",
+    "• DNS Filtering",
+    "• Email Archiving",
+    "• Entra ID Microsoft 365 Backup &amp; Recovery",
+    "• Employee Phishing Training – Simulated phishing"
+  ]
+}
