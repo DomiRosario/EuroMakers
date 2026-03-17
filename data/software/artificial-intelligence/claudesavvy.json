@@ -1,0 +1,18 @@
+{
+  "id": "claudesavvy",
+  "name": "Claudesavvy",
+  "description": "Monitor Claude Code usage in real-time. Explore conversations, sub-agents, teams, and token analytics — all with clickable insights that take you straight to the detail you need. Free, open-source, and takes minutes to set up.",
+  "category": "artificial-intelligence",
+  "country": "United Kingdom",
+  "logo": "/images/claudesavvy_icon.png",
+  "website": "https://codebotiks.com/",
+  "longDescription": "Monitor Claude Code usage in real-time. Explore conversations, sub-agents, teams, and token analytics — all with clickable insights that take you straight to the detail you need. Free, open-source, and takes minutes to set up. Understanding Claude Code Costs Claude Code costs can quickly accumulate without proper monitoring. Our open-source dashboard helps you: Track Claude Code usage across multiple projects in real-time Drill into Conversation Analytics — see cost, turns, and context usage per session Monitor Sub-Agent exchanges with per-invocation token and cost breakdowns Monitor and control Claude Code costs with customizable alerts and budgets Track Teams usage and aggregate spend across your organization Analyze per-project spending to optimize resource allocation",
+  "features": [
+    "Track Claude Code usage across multiple projects i",
+    "Drill into Conversation Analytics — see cost, turn",
+    "Monitor Sub-Agent exchanges with per-invocation to",
+    "Monitor and control Claude Code costs with customi",
+    "Track Teams usage and aggregate spend across your",
+    "Analyze per-project spending to optimize resource"
+  ]
+}
