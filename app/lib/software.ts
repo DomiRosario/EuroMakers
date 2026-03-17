@@ -4,6 +4,7 @@ import {
   getAllCountriesServer,
 } from "./software.server";
 import { CATEGORIES } from "./categories";
+import { normalizeFeatureText, normalizeInlineText } from "./software-content";
 
 // Define the structure of the raw software data from JSON/server
 interface RawSoftware {
@@ -44,6 +45,9 @@ export function mapRawSoftwareToSoftware(rawSoftware: RawSoftware): Software {
     // If a matching category is found by ID
     return {
       ...rawSoftware,
+      description: normalizeInlineText(rawSoftware.description),
+      longDescription: normalizeInlineText(rawSoftware.longDescription),
+      features: rawSoftware.features.map(normalizeFeatureText).filter(Boolean),
       categoryId: categoryObj.id, // Use the ID from the found category object (same as categoryIdFromJson)
       categoryDisplayName: categoryObj.name, // Use the name from the found category object for display
     };
@@ -55,6 +59,9 @@ export function mapRawSoftwareToSoftware(rawSoftware: RawSoftware): Software {
     );
     return {
       ...rawSoftware,
+      description: normalizeInlineText(rawSoftware.description),
+      longDescription: normalizeInlineText(rawSoftware.longDescription),
+      features: rawSoftware.features.map(normalizeFeatureText).filter(Boolean),
       categoryId: categoryIdFromJson, // Use the original ID from JSON
       categoryDisplayName: categoryIdFromJson, // Use the ID as fallback display name
     };

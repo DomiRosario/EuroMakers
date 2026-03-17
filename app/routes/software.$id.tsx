@@ -12,6 +12,7 @@ import { getCountryCode } from "~/lib/countries";
 import { mapRawSoftwareToSoftware } from "~/lib/software";
 import { buildSocialMeta } from "~/lib/meta";
 import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
+import { getSoftwareContentBlocks } from "~/lib/software-content";
 
 // Kept local getFlagComponent
 const getFlagComponent = (countryCode: string) => {
@@ -106,6 +107,8 @@ export default function SoftwareDetail() {
     );
   }
 
+  const contentBlocks = getSoftwareContentBlocks(software.longDescription);
+
   return (
     <Layout>
       <main className="container mx-auto px-4 py-8">
@@ -180,8 +183,28 @@ export default function SoftwareDetail() {
           </div>
 
           {/* Long Description */}
-          <div className="prose max-w-none mb-8 whitespace-pre-wrap">
-            {software.longDescription}
+          <div className="prose max-w-none mb-8">
+            {contentBlocks.map((block, index) => {
+              if (block.type === "heading") {
+                return (
+                  <h3 key={`${block.type}-${index}`} className="text-xl font-semibold">
+                    {block.text}
+                  </h3>
+                );
+              }
+
+              if (block.type === "list") {
+                return (
+                  <ul key={`${block.type}-${index}`}>
+                    {block.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                );
+              }
+
+              return <p key={`${block.type}-${index}`}>{block.text}</p>;
+            })}
           </div>
 
           {/* Features */}

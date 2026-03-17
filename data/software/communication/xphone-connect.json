@@ -1,12 +1,12 @@
 {
   "id": "xphone-connect",
   "name": "XPhone Connect",
-  "description": "XPhone Connect is a Unified Communications &amp; Collaborations software that unifies telephony, presence, CRM and hotline management in a single solution. Customisable, seamlessly integrated and fully GDPR-compliant.",
+  "description": "XPhone Connect is a unified communications and collaboration platform that brings telephony, presence, CRM, and hotline management into a single solution. It is customizable, integrates with existing systems, and emphasizes GDPR compliance.",
   "category": "communication",
   "country": "Germany",
   "logo": "/images/xphone-connect_icon.svg",
   "website": "https://www.xphone-connect.com/",
-  "longDescription": "XPhone Connect is a unified communications platform that combines telephony, chat, meetings, and messaging in a single application. It integrates with existing PBX systems and business applications such as CRM and ERP systems. The platform provides features such as computer telephony integration (CTI), softphone functionality, presence management, and a centralized communication history. It supports office, remote, and mobile work scenarios through desktop and mobile clients. XPhone Connect is developed and maintained by a German company and is primarily used by organizations in Europe that require integration with existing telephony systems and compliance with European data protection requirements.The UC software can be deployed on-premises or in hybrid environments, enabling organizations to maintain control over their communication infrastructure and data. Features • Computer Telephony Integration (CTI) • Softphone (desktop and mobile) • Business chat (1:1 and group) • Audio and web meetings • Screen sharing • Presence and availability management • Voicemail, fax, and SMS integration • Central communication history (journal) • CRM and ERP integrations • Mobile apps (iOS and Android)",
+  "longDescription": "XPhone Connect is a unified communications platform that combines telephony, chat, meetings, and messaging in a single application. It integrates with existing PBX systems and business applications such as CRM and ERP systems.\n\nThe platform includes computer telephony integration, softphone functionality, presence management, and a centralized communication history. It supports office, remote, and mobile work scenarios through desktop and mobile clients.\n\nXPhone Connect is developed and maintained by a German company and is aimed at organizations that need strong integration with existing telephony infrastructure while meeting European data protection requirements. It can be deployed on premises or in hybrid environments so companies can keep control of their communication infrastructure and data.",
   "features": [
     "On-premises and private cloud deployment",
     "No vendor lock-in via open standards",
