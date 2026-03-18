@@ -9,8 +9,6 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
-import { Analytics } from "@vercel/analytics/remix";
-import { SpeedInsights } from "@vercel/speed-insights/remix";
 import MaintenanceWrapper from "./components/MaintenanceWrapper";
 import Footer from "./components/Footer";
 import { getEnvVars, getPublicEnvVars } from "./env.server";
@@ -155,8 +153,6 @@ export default function App() {
           </div>
         </MaintenanceWrapper>
         <ScrollRestoration />
-        <Analytics />
-        <SpeedInsights />
         <Scripts />
       </body>
     </html>

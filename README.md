@@ -6,7 +6,7 @@ EuroMakers is a Remix-based directory of European software products.
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 22+
 - npm
 
 ### Setup
