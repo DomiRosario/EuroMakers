@@ -3,12 +3,17 @@ import { useLoaderData, useSearchParams } from "@remix-run/react";
 import Layout from "~/components/Layout";
 import { getAllSoftware, getAllCountries, type Software } from "~/lib/software";
 import SoftwareGrid from "~/components/SoftwareGrid";
-import SoftwareFilters from "~/components/SoftwareFilters";
 import { getCountryCode } from "~/lib/countries";
 import { CATEGORIES, type Category } from "~/lib/categories";
-import { useState } from "react";
-import { RiCloseLine, RiFilter3Line } from "react-icons/ri";
+import { useState, useRef, useEffect } from "react";
+import {
+  RiLayoutGridLine,
+  RiLayoutMasonryLine,
+  RiArrowDownSLine,
+  RiSearch2Line,
+} from "react-icons/ri";
 import { buildSocialMeta } from "~/lib/meta";
+import type { ViewMode } from "~/components/SoftwareCard";
 
 interface Country {
   id: string;
@@ -33,10 +38,8 @@ export async function loader() {
     getAllCountries(),
   ]);
 
-  // Use predefined categories instead of generating from software data
   const categories = CATEGORIES;
 
-  // Deduplicate countries and sort them
   const uniqueCountryNames = Array.from(new Set(countryNames)).sort();
   const countries: Country[] = uniqueCountryNames.map((name) => ({
     id: name.toLowerCase(),
@@ -77,10 +80,30 @@ export default function SoftwarePage() {
   const { software, categories, countries, categoryCounts, countryCounts } =
     useLoaderData<LoaderData>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>("cards");
+  const [openTopFilter, setOpenTopFilter] = useState<"category" | "country" | null>(null);
+  const topFilterRef = useRef<HTMLDivElement>(null);
+
   const selectedCategory = searchParams.get("category") || undefined;
   const selectedCountry = searchParams.get("country") || undefined;
   const searchQuery = searchParams.get("search") || "";
+
+  const selectedCategoryName = selectedCategory
+    ? categories.find((c) => c.id === selectedCategory)?.name
+    : undefined;
+  const selectedCountryName = selectedCountry
+    ? countries.find((c) => c.id === selectedCountry)?.name
+    : undefined;
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (topFilterRef.current && !topFilterRef.current.contains(e.target as Node)) {
+        setOpenTopFilter(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const filteredSoftware = software.filter((item) => {
     if (
@@ -117,292 +140,338 @@ export default function SoftwarePage() {
     setSearchParams(newParams, { replace: true });
   };
 
-  const hasActiveFilters = Boolean(
-    selectedCategory || selectedCountry || searchQuery,
-  );
-  const selectedCategoryName = selectedCategory
-    ? categories.find((category) => category.id === selectedCategory)?.name ||
-      selectedCategory
-    : undefined;
-  const selectedCountryName = selectedCountry
-    ? countries.find((country) => country.id === selectedCountry)?.name ||
-      selectedCountry
-    : undefined;
+  const hasActiveFilters = Boolean(selectedCategory || selectedCountry || searchQuery);
   const clearAllFilters = () => handleFilterChange({});
 
   return (
     <Layout>
       <main className="min-h-screen bg-white">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 pb-8">
           <div className="max-w-7xl mx-auto">
-            {/* Header */}
-            <div className="mb-8 border-b border-gray-200 pb-6">
-              <div className="flex flex-col gap-4">
-                {/* Title and Stats Row */}
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h1 className="text-3xl font-bold">
-                      European Software Directory
-                    </h1>
-                    <p className="text-gray-600 mt-2">
-                      Discover and explore software solutions developed across
-                      Europe
-                    </p>
-                  </div>
-                  <div className="hidden lg:block">
-                    <span className="text-lg font-medium">
-                      {filteredSoftware.length} Software{" "}
-                      {filteredSoftware.length !== 1 ? "Solutions" : "Solution"}
-                    </span>
-                  </div>
-                </div>
 
-                {/* Mobile/Tablet Search and Filter Row */}
-                <div className="flex lg:hidden flex-row gap-4 items-center">
-                  {/* Search Bar */}
-                  <div className="flex-1 relative">
-                    <input
-                      type="text"
-                      placeholder="Search software..."
-                      className="w-full px-4 py-2.5 pl-10 bg-white border border-gray-300 text-gray-900 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-euBlue focus:border-transparent"
-                      value={searchQuery}
-                      onChange={(e) =>
-                        handleFilterChange({
-                          category: selectedCategory,
-                          country: selectedCountry,
-                          search: e.target.value,
-                        })
-                      }
-                    />
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <svg
-                        className="h-5 w-5 text-gray-400"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Filter Button */}
-                  <button
-                    onClick={() => setIsFilterOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-euBlue text-white whitespace-nowrap"
-                  >
-                    <RiFilter3Line size={20} />
-                    <span>Filters</span>
-                  </button>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-medium text-gray-600 lg:hidden">
-                    {filteredSoftware.length} result
-                    {filteredSoftware.length === 1 ? "" : "s"}
-                  </span>
-                  {selectedCategoryName && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleFilterChange({
-                          category: undefined,
-                          country: selectedCountry,
-                          search: searchQuery,
-                        })
-                      }
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-euBlue text-xs font-medium"
-                    >
-                      {selectedCategoryName}
-                      <RiCloseLine className="w-3 h-3" />
-                    </button>
-                  )}
-                  {selectedCountryName && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleFilterChange({
-                          category: selectedCategory,
-                          country: undefined,
-                          search: searchQuery,
-                        })
-                      }
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-euBlue text-xs font-medium"
-                    >
-                      {selectedCountryName}
-                      <RiCloseLine className="w-3 h-3" />
-                    </button>
-                  )}
-                  {searchQuery && (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleFilterChange({
-                          category: selectedCategory,
-                          country: selectedCountry,
-                          search: "",
-                        })
-                      }
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-euBlue text-xs font-medium"
-                    >
-                      &quot;{searchQuery}&quot;
-                      <RiCloseLine className="w-3 h-3" />
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={clearAllFilters}
-                    className={`text-xs font-medium underline-offset-2 ${
-                      hasActiveFilters
-                        ? "text-red-600 hover:text-red-700 hover:underline"
-                        : "text-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!hasActiveFilters}
-                  >
-                    Clear all
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-12 gap-8">
-              {/* Filters Panel - Desktop */}
-              <div className="hidden lg:block col-span-3 bg-gray-50 rounded-lg p-4 lg:p-6 h-fit sticky top-[calc(var(--navbar-height)+1rem)] min-w-[200px]">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-sm font-medium text-gray-700">Filters</h3>
-                  <button
-                    onClick={clearAllFilters}
-                    className={`text-sm font-medium flex items-center gap-1 ${
-                      hasActiveFilters
-                        ? "text-red-600 hover:text-red-700"
-                        : "text-gray-400 cursor-not-allowed"
-                    }`}
-                    disabled={!hasActiveFilters}
-                  >
-                    Clear all
-                  </button>
-                </div>
-                <SoftwareFilters
-                  categories={categories}
-                  countries={countries}
-                  selectedCategory={selectedCategory}
-                  selectedCountry={selectedCountry}
-                  searchQuery={searchQuery}
-                  categoryCounts={categoryCounts}
-                  countryCounts={countryCounts}
-                  onFilterChange={handleFilterChange}
+            {/* Filter bar — desktop */}
+            <div
+              ref={topFilterRef}
+              className="hidden lg:flex items-center gap-3 py-3 border-b border-gray-200 mb-6"
+            >
+              {/* Search */}
+              <div className="relative w-64">
+                <input
+                  type="text"
+                  placeholder="Search software..."
+                  className="w-full px-3 py-2 pl-9 bg-white border border-gray-300 text-gray-900 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-euBlue focus:border-transparent text-sm"
+                  value={searchQuery}
+                  onChange={(e) =>
+                    handleFilterChange({
+                      category: selectedCategory,
+                      country: selectedCountry,
+                      search: e.target.value,
+                    })
+                  }
                 />
+                <RiSearch2Line className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
               </div>
 
-              {/* Filters Panel - Mobile/Tablet */}
-              <div
-                role="dialog"
-                aria-modal="true"
-                aria-label="Filter options"
-                className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-                  isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
-              >
-                {/* Overlay */}
+              {/* Category dropdown */}
+              <div className="relative">
                 <button
-                  className="absolute inset-0 bg-black bg-opacity-50 w-full h-full"
-                  onClick={() => setIsFilterOpen(false)}
-                  aria-label="Close filters overlay"
-                />
-
-                {/* Panel */}
-                <div
-                  role="document"
-                  className={`absolute right-0 top-0 h-full w-[85%] max-w-md bg-white transform transition-transform duration-300 ${
-                    isFilterOpen ? "translate-x-0" : "translate-x-full"
+                  type="button"
+                  onClick={() =>
+                    setOpenTopFilter((prev) =>
+                      prev === "category" ? null : "category"
+                    )
+                  }
+                  className={`flex items-center gap-1.5 px-3 py-2 border rounded-lg text-sm whitespace-nowrap transition-colors ${
+                    selectedCategory
+                      ? "border-euBlue text-euBlue font-medium"
+                      : "border-gray-300 text-gray-700 hover:border-gray-400"
                   }`}
                 >
-                  <div className="p-6 h-full overflow-y-auto">
-                    <div className="flex items-center justify-between mb-6">
-                      <h2 className="text-xl font-bold">Filters</h2>
-                      <div className="flex items-center gap-4">
+                  {selectedCategoryName || "Category"}
+                  <RiArrowDownSLine
+                    className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
+                      openTopFilter === "category" ? "rotate-180" : ""
+                    } ${selectedCategory ? "text-euBlue" : "text-gray-400"}`}
+                  />
+                </button>
+                {openTopFilter === "category" && (
+                  <div className="absolute top-full left-0 mt-1 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+                    {categories.map((cat) => {
+                      const isSelected = selectedCategory === cat.id;
+                      const count = categoryCounts[cat.id] ?? 0;
+                      return (
                         <button
+                          key={cat.id}
+                          type="button"
                           onClick={() => {
-                            clearAllFilters();
-                            setIsFilterOpen(false);
+                            handleFilterChange({
+                              category: isSelected ? undefined : cat.id,
+                              country: selectedCountry,
+                              search: searchQuery,
+                            });
+                            setOpenTopFilter(null);
                           }}
-                          className={`text-sm font-medium ${
-                            hasActiveFilters
-                              ? "text-red-600 hover:text-red-700"
-                              : "text-gray-400 cursor-not-allowed"
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                            isSelected
+                              ? "text-euBlue font-medium bg-blue-50/60"
+                              : "text-gray-700"
                           }`}
-                          disabled={!hasActiveFilters}
                         >
-                          Clear all
-                        </button>
-                        <button
-                          onClick={() => setIsFilterOpen(false)}
-                          className="p-2 hover:bg-gray-100 rounded-full"
-                          aria-label="Close filters"
-                        >
-                          <svg
-                            className="w-6 h-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                          <span className="flex-1 text-left truncate">{cat.name}</span>
+                          <span
+                            className={`text-xs rounded-full px-1.5 py-0.5 flex-shrink-0 ${
+                              isSelected
+                                ? "bg-euBlue/10 text-euBlue"
+                                : "bg-gray-100 text-gray-500"
+                            }`}
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
+                            {count}
+                          </span>
                         </button>
-                      </div>
-                    </div>
-                    <SoftwareFilters
-                      categories={categories}
-                      countries={countries}
-                      selectedCategory={selectedCategory}
-                      selectedCountry={selectedCountry}
-                      searchQuery={searchQuery}
-                      categoryCounts={categoryCounts}
-                      countryCounts={countryCounts}
-                      onFilterChange={(filters) => {
-                        handleFilterChange({
-                          ...filters,
-                          search: filters.search ?? searchQuery,
-                        });
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Software Grid */}
-              <div className="col-span-12 lg:col-span-9">
-                {filteredSoftware.length > 0 ? (
-                  <SoftwareGrid software={filteredSoftware} />
-                ) : (
-                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-10 text-center">
-                    <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-                      No software found
-                    </h2>
-                    <p className="text-gray-600 mb-6">
-                      Try removing a filter or using a broader search term.
-                    </p>
-                    <button
-                      type="button"
-                      onClick={clearAllFilters}
-                      className="btn btn-eu"
-                    >
-                      Reset filters
-                    </button>
+                      );
+                    })}
                   </div>
                 )}
               </div>
+
+              {/* Country dropdown */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenTopFilter((prev) =>
+                      prev === "country" ? null : "country"
+                    )
+                  }
+                  className={`flex items-center gap-1.5 px-3 py-2 border rounded-lg text-sm whitespace-nowrap transition-colors ${
+                    selectedCountry
+                      ? "border-euBlue text-euBlue font-medium"
+                      : "border-gray-300 text-gray-700 hover:border-gray-400"
+                  }`}
+                >
+                  {selectedCountryName || "Country"}
+                  <RiArrowDownSLine
+                    className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
+                      openTopFilter === "country" ? "rotate-180" : ""
+                    } ${selectedCountry ? "text-euBlue" : "text-gray-400"}`}
+                  />
+                </button>
+                {openTopFilter === "country" && (
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+                    {countries.map((country) => {
+                      const isSelected = selectedCountry === country.id;
+                      const count = countryCounts[country.id] ?? 0;
+                      return (
+                        <button
+                          key={country.id}
+                          type="button"
+                          onClick={() => {
+                            handleFilterChange({
+                              country: isSelected ? undefined : country.id,
+                              category: selectedCategory,
+                              search: searchQuery,
+                            });
+                            setOpenTopFilter(null);
+                          }}
+                          className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${
+                            isSelected
+                              ? "text-euBlue font-medium bg-blue-50/60"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          <span className="flex-1 text-left truncate">{country.name}</span>
+                          <span
+                            className={`text-xs rounded-full px-1.5 py-0.5 flex-shrink-0 ${
+                              isSelected
+                                ? "bg-euBlue/10 text-euBlue"
+                                : "bg-gray-100 text-gray-500"
+                            }`}
+                          >
+                            {count}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              {/* Clear all */}
+              {hasActiveFilters && (
+                <button
+                  type="button"
+                  onClick={clearAllFilters}
+                  className="text-sm text-red-500 hover:text-red-600 hover:underline underline-offset-2 whitespace-nowrap"
+                >
+                  Clear all
+                </button>
+              )}
+
+              {/* Spacer */}
+              <div className="flex-1" />
+
+              {/* Result count */}
+              <span className="text-sm text-gray-400 whitespace-nowrap">
+                {filteredSoftware.length}{" "}
+                {filteredSoftware.length === 1 ? "result" : "results"}
+              </span>
+
+              {/* View toggle */}
+              <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("cards")}
+                  title="Card view"
+                  className={`p-1.5 rounded-md transition-colors ${
+                    viewMode === "cards"
+                      ? "bg-white shadow text-euBlue"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  <RiLayoutGridLine size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("rectangles")}
+                  title="Rectangle view"
+                  className={`p-1.5 rounded-md transition-colors ${
+                    viewMode === "rectangles"
+                      ? "bg-white shadow text-euBlue"
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  <RiLayoutMasonryLine size={18} />
+                </button>
+              </div>
             </div>
+
+            {/* Mobile filters — search + dropdowns stacked at top */}
+            <div className="lg:hidden mb-4 space-y-2">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search software..."
+                  className="w-full px-3 py-2.5 pl-9 bg-white border border-gray-200 text-gray-900 rounded-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-euBlue focus:border-transparent text-sm"
+                  value={searchQuery}
+                  onChange={(e) =>
+                    handleFilterChange({
+                      category: selectedCategory,
+                      country: selectedCountry,
+                      search: e.target.value,
+                    })
+                  }
+                />
+                <RiSearch2Line className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-3.5 h-3.5" />
+              </div>
+              <div className="flex items-center gap-2">
+                {/* Category */}
+                <div className="relative flex-1">
+                  <button
+                    type="button"
+                    onClick={() => setOpenTopFilter((p) => p === "category" ? null : "category")}
+                    className={`w-full flex items-center justify-between gap-1 px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                      selectedCategory ? "border-euBlue text-euBlue" : "border-gray-200 text-gray-700"
+                    }`}
+                  >
+                    <span className="truncate">{selectedCategoryName || "Category"}</span>
+                    <RiArrowDownSLine className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openTopFilter === "category" ? "rotate-180" : ""} ${selectedCategory ? "text-euBlue" : "text-gray-400"}`} />
+                  </button>
+                  {openTopFilter === "category" && (
+                    <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+                      {categories.map((cat) => {
+                        const isSelected = selectedCategory === cat.id;
+                        const count = categoryCounts[cat.id] ?? 0;
+                        return (
+                          <button
+                            key={cat.id}
+                            type="button"
+                            onClick={() => { handleFilterChange({ category: isSelected ? undefined : cat.id, country: selectedCountry, search: searchQuery }); setOpenTopFilter(null); }}
+                            className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${isSelected ? "text-euBlue font-medium bg-blue-50/60" : "text-gray-700"}`}
+                          >
+                            <span className="flex-1 text-left truncate">{cat.name}</span>
+                            <span className={`text-xs rounded-full px-1.5 py-0.5 flex-shrink-0 ${isSelected ? "bg-euBlue/10 text-euBlue" : "bg-gray-100 text-gray-500"}`}>{count}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* Country */}
+                <div className="relative flex-1">
+                  <button
+                    type="button"
+                    onClick={() => setOpenTopFilter((p) => p === "country" ? null : "country")}
+                    className={`w-full flex items-center justify-between gap-1 px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                      selectedCountry ? "border-euBlue text-euBlue" : "border-gray-200 text-gray-700"
+                    }`}
+                  >
+                    <span className="truncate">{selectedCountryName || "Country"}</span>
+                    <RiArrowDownSLine className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openTopFilter === "country" ? "rotate-180" : ""} ${selectedCountry ? "text-euBlue" : "text-gray-400"}`} />
+                  </button>
+                  {openTopFilter === "country" && (
+                    <div className="absolute top-full left-0 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-20 max-h-64 overflow-y-auto">
+                      {countries.map((country) => {
+                        const isSelected = selectedCountry === country.id;
+                        const count = countryCounts[country.id] ?? 0;
+                        return (
+                          <button
+                            key={country.id}
+                            type="button"
+                            onClick={() => { handleFilterChange({ country: isSelected ? undefined : country.id, category: selectedCategory, search: searchQuery }); setOpenTopFilter(null); }}
+                            className={`w-full flex items-center gap-2 px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${isSelected ? "text-euBlue font-medium bg-blue-50/60" : "text-gray-700"}`}
+                          >
+                            <span className="flex-1 text-left truncate">{country.name}</span>
+                            <span className={`text-xs rounded-full px-1.5 py-0.5 flex-shrink-0 ${isSelected ? "bg-euBlue/10 text-euBlue" : "bg-gray-100 text-gray-500"}`}>{count}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {hasActiveFilters && (
+                  <button type="button" onClick={clearAllFilters} className="text-sm text-red-500 whitespace-nowrap">
+                    Clear
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {/* Backdrop to close open dropdowns */}
+            {openTopFilter && (
+              <div
+                className="fixed inset-0 z-10"
+                onClick={() => setOpenTopFilter(null)}
+              />
+            )}
+
+            {/* Full-width grid */}
+            {filteredSoftware.length > 0 ? (
+              <>
+                <div className="lg:hidden">
+                  <SoftwareGrid software={filteredSoftware} viewMode="rectangles" />
+                </div>
+                <div className="hidden lg:block">
+                  <SoftwareGrid software={filteredSoftware} viewMode={viewMode} />
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <p className="text-gray-400 text-sm mb-4">
+                  No results match your current filters.
+                </p>
+                <button
+                  type="button"
+                  onClick={clearAllFilters}
+                  className="text-sm font-medium text-euBlue hover:underline underline-offset-2"
+                >
+                  Clear all filters
+                </button>
+              </div>
+            )}
+
+
           </div>
         </div>
       </main>

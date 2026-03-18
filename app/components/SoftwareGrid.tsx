@@ -1,13 +1,22 @@
 import type { Software } from "~/lib/software";
-import SoftwareCard from "./SoftwareCard";
+import SoftwareCard, { type ViewMode } from "./SoftwareCard";
 
 interface SoftwareGridProps {
   software: Software[];
+  viewMode?: ViewMode;
 }
 
-export default function SoftwareGrid({ software }: SoftwareGridProps) {
+export default function SoftwareGrid({
+  software,
+  viewMode = "cards",
+}: SoftwareGridProps) {
+  const containerClass =
+    viewMode === "rectangles"
+      ? "grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6";
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+    <div className={containerClass}>
       {software.map((item) => (
         <SoftwareCard
           key={item.id}
@@ -18,6 +27,7 @@ export default function SoftwareGrid({ software }: SoftwareGridProps) {
           country={item.country}
           logo={item.logo}
           website={item.website}
+          viewMode={viewMode}
         />
       ))}
     </div>

@@ -87,13 +87,13 @@ export default function MissionPage() {
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.16),transparent_45%)]"
           />
           <div className="eu-container relative max-w-6xl py-16 md:py-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-euYellow animate-fade-in">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-euYellow">
               Mission Framework
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white animate-fade-in-up md:text-6xl">
+            <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white md:text-6xl">
               A practical path toward European digital sovereignty.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/90 animate-fade-in-up animation-delay-200">
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/90">
               EuroMakers exists to make European software easier to discover,
               evaluate, and adopt. Our mission is not symbolic. It is an
               operational effort to strengthen Europe&apos;s software economy

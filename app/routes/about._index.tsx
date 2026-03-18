@@ -78,13 +78,13 @@ export default function AboutPage() {
             className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:56px_56px] opacity-40"
           />
           <div className="eu-container relative max-w-6xl py-16 md:py-24">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-euYellow animate-fade-in">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-euYellow">
               About EuroMakers
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white animate-fade-in-up md:text-6xl">
+            <h1 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white md:text-6xl">
               Building a stronger European software commons.
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/90 animate-fade-in-up animation-delay-200">
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/90">
               EuroMakers is a public directory focused on software designed and
               developed in Europe. We make it easier for teams to discover
               credible products aligned with European standards on privacy,
