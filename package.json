@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@marsidev/react-turnstile": "^1.4.2",
-    "@remix-run/node": "^2.16.7",
+    "@remix-run/node": "^2.17.4",
     "@remix-run/react": "^2.16.7",
     "@remix-run/serve": "^2.16.7",
     "@types/nodemailer": "^7.0.11",
