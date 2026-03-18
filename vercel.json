@@ -1,1 +1,7 @@
-{}
+{
+  "functions": {
+    "build/server/**": {
+      "includeFiles": "data/**"
+    }
+  }
+}

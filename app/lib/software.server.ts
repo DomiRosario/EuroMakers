@@ -21,7 +21,9 @@ function resolveSoftwareDirectory(): string | null {
   const candidates = [
     configuredDirectory,
     path.resolve(process.cwd(), "data/software"),
-    path.resolve(__dirname, "../../data/software"),
+    path.resolve(__dirname, "data/software"),       // build/server/[hash]/ → build/server/[hash]/data/software
+    path.resolve(__dirname, "../data/software"),    // build/server/[hash]/ → build/server/data/software
+    path.resolve(__dirname, "../../data/software"), // build/server/[hash]/ → build/data/software (post-build cp)
     path.resolve(__dirname, "../../../data/software"),
     "/var/task/data/software",
   ].filter((candidate): candidate is string => Boolean(candidate));
