@@ -2,6 +2,7 @@
   "version": "1",
   "sites": [
     {
+      "siteId": "69bac960003b41513d84",
       "name": "EuroMakers",
       "framework": "remix",
       "buildRuntime": "node-22",
