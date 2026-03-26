@@ -7,10 +7,10 @@ import { getCountryCode } from "~/lib/countries";
 import { CATEGORIES, type Category } from "~/lib/categories";
 import { useState, useRef, useEffect } from "react";
 import {
-  RiLayoutGridLine,
   RiLayoutMasonryLine,
   RiArrowDownSLine,
   RiSearch2Line,
+  RiListView,
 } from "react-icons/ri";
 import { buildSocialMeta } from "~/lib/meta";
 import type { ViewMode } from "~/components/SoftwareCard";
@@ -320,22 +320,22 @@ export default function SoftwarePage() {
               <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
                 <button
                   type="button"
-                  onClick={() => setViewMode("cards")}
-                  title="Card view"
+                  onClick={() => setViewMode("rectangles")}
+                  title="List view"
                   className={`p-1.5 rounded-md transition-colors ${
-                    viewMode === "cards"
+                    viewMode === "rectangles"
                       ? "bg-white shadow text-euBlue"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
-                  <RiLayoutGridLine size={18} />
+                  <RiListView size={18} />
                 </button>
                 <button
                   type="button"
-                  onClick={() => setViewMode("rectangles")}
-                  title="Rectangle view"
+                  onClick={() => setViewMode("cards")}
+                  title="Card view"
                   className={`p-1.5 rounded-md transition-colors ${
-                    viewMode === "rectangles"
+                    viewMode === "cards"
                       ? "bg-white shadow text-euBlue"
                       : "text-gray-500 hover:text-gray-700"
                   }`}
