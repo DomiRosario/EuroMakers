@@ -16,7 +16,7 @@ export default function Hero({ categoryCounts }: HeroProps) {
   ];
 
   return (
-    <section className="relative overflow-hidden bg-euBlue text-white">
+    <section className="relative flex flex-1 flex-col overflow-hidden bg-euBlue text-white">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(255,255,255,0.12),transparent_26%),linear-gradient(180deg,#003399_0%,#003087_55%,#002b73_100%)]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute left-1/2 top-[41%] w-[78vw] max-w-[320px] aspect-square -translate-x-1/2 -translate-y-1/2 opacity-25 sm:max-w-[360px] md:max-w-[420px] md:opacity-20 lg:hidden">
@@ -88,9 +88,10 @@ export default function Hero({ categoryCounts }: HeroProps) {
         </div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-10 sm:py-12 lg:py-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_28rem] gap-10 items-center lg:min-h-[28rem]">
+      <div className="relative flex flex-1 flex-col">
+        <div className="container mx-auto flex flex-1 flex-col px-4 py-10 sm:py-12 lg:py-12">
+          <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_28rem] gap-10 items-center lg:min-h-[28rem] lg:flex-1">
             <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:max-w-3xl lg:self-center lg:text-left">
               <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.32em] text-white/70">
                 European Software Directory
@@ -120,7 +121,7 @@ export default function Hero({ categoryCounts }: HeroProps) {
             <div className="relative hidden lg:block h-[24rem]" aria-hidden="true" />
           </div>
 
-          <div className="relative z-10 mt-8 sm:mt-10">
+          <div className="relative z-10 mt-8 sm:mt-10 lg:mt-auto">
             <div className="mx-auto mb-4 flex max-w-5xl items-center justify-center px-4 text-[11px] uppercase tracking-[0.24em] text-white/55 sm:px-6 sm:text-xs lg:justify-start">
               <span>Explore by Category</span>
             </div>
@@ -153,6 +154,7 @@ export default function Hero({ categoryCounts }: HeroProps) {
                 })}
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

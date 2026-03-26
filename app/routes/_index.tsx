@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <main>
+      <main className="flex flex-1 flex-col">
         <Hero categoryCounts={categoryCounts} />
       </main>
     </Layout>

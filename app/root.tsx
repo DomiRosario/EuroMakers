@@ -148,7 +148,7 @@ export default function App() {
       <body suppressHydrationWarning className="font-sans">
         <MaintenanceWrapper isMaintenanceMode={data.isMaintenanceMode}>
           <div className="flex flex-col min-h-screen">
-            <div className="flex-1">
+            <div className="flex flex-1 flex-col">
               <Outlet />
             </div>
             <Footer />

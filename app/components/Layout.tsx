@@ -31,7 +31,7 @@ export default function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex min-h-full flex-1 flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -56,7 +56,7 @@ export default function Layout({ children }: LayoutProps) {
         }}
       />
       <Navbar />
-      <div className="navbar-padding">{children}</div>
+      <div className="navbar-padding flex flex-1 flex-col">{children}</div>
     </div>
   );
 }
