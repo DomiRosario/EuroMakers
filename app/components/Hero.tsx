@@ -1,117 +1,235 @@
 import { Link } from "@remix-run/react";
+import { useEffect, useRef } from "react";
+import { CATEGORIES, CATEGORY_ICONS } from "~/lib/categories";
 
-export default function Hero() {
+interface HeroProps {
+  categoryCounts?: Record<string, number>;
+}
+
+export default function Hero({ categoryCounts }: HeroProps) {
+  const visibleCategories = CATEGORIES.filter(
+    (category) => (categoryCounts?.[category.id] || 0) > 0,
+  );
+  const marqueeCategories = [
+    ...visibleCategories,
+    ...visibleCategories,
+    ...visibleCategories,
+  ];
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const isHoveredRef = useRef(false);
+  const isPointerDownRef = useRef(false);
+
+  useEffect(() => {
+    const container = marqueeRef.current;
+    if (!container || visibleCategories.length === 0) return;
+
+    let frameId = 0;
+    let lastTime = 0;
+
+    const syncInfinitePosition = () => {
+      const setWidth = container.scrollWidth / 3;
+      if (!setWidth) return;
+
+      if (container.scrollLeft < setWidth * 0.5) {
+        container.scrollLeft += setWidth;
+      } else if (container.scrollLeft > setWidth * 1.5) {
+        container.scrollLeft -= setWidth;
+      }
+    };
+
+    container.scrollLeft = container.scrollWidth / 3;
+
+    const step = (time: number) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
+
+      if (!isHoveredRef.current && !isPointerDownRef.current) {
+        container.scrollLeft += delta * 0.035;
+        syncInfinitePosition();
+      }
+
+      frameId = window.requestAnimationFrame(step);
+    };
+
+    frameId = window.requestAnimationFrame(step);
+
+    const handleScroll = () => syncInfinitePosition();
+    const handlePointerDown = () => {
+      isPointerDownRef.current = true;
+    };
+    const handlePointerUp = () => {
+      isPointerDownRef.current = false;
+      syncInfinitePosition();
+    };
+    const handleMouseEnter = () => {
+      isHoveredRef.current = true;
+    };
+    const handleMouseLeave = () => {
+      isHoveredRef.current = false;
+      isPointerDownRef.current = false;
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    container.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("pointerup", handlePointerUp);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      container.removeEventListener("scroll", handleScroll);
+      container.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("pointerup", handlePointerUp);
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [visibleCategories.length]);
+
   return (
-    <div className="relative bg-euBlue overflow-hidden [transform:none] [transition:none]">
-      <div className="relative container mx-auto px-4 min-h-[70vh] py-16 sm:py-20 md:py-0 md:h-[calc(60vh-var(--navbar-height))] flex items-center [transform:none] [transition:none]">
-        <div className="max-w-6xl mx-auto w-full [transform:none] [transition:none]">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center [transform:none] [transition:none]">
-            {/* Text Section */}
-            <div className="text-center md:text-left space-y-6 [transform:none] [transition:none] relative z-10 pb-12 md:pb-0">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-white leading-tight [transform:none] [transition:none]">
-                Discover&nbsp;Software
-                <br />
+    <section className="relative overflow-hidden bg-euBlue text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_22%,rgba(255,255,255,0.12),transparent_26%),linear-gradient(180deg,#003399_0%,#003087_55%,#002b73_100%)]" />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-1/2 top-[41%] w-[78vw] max-w-[320px] aspect-square -translate-x-1/2 -translate-y-1/2 opacity-25 sm:max-w-[360px] md:max-w-[420px] md:opacity-20 lg:hidden">
+          {[...Array(12)].map((_, i) => {
+            const angle = (i * Math.PI * 2) / 12 - Math.PI / 2;
+            const radius = 45;
+
+            return (
+              <div
+                key={`mobile-star-${i}`}
+                className="absolute h-7 w-7 sm:h-8 sm:w-8"
+                style={{
+                  left: `${50 + Math.cos(angle) * radius}%`,
+                  top: `${50 + Math.sin(angle) * radius}%`,
+                  transform: "translate(-50%, -50%)",
+                  willChange: "transform",
+                  transformOrigin: "center center",
+                  filter: "drop-shadow(0 0 6px rgba(255, 204, 0, 0.2))",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-full w-full text-euYellow animate-twinkle"
+                  style={{ animationDelay: `${i * 0.16}s` }}
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"
+                  />
+                </svg>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="absolute hidden lg:block right-[1%] top-[48%] w-[42vw] max-w-[40rem] aspect-square -translate-y-1/2">
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0.08)_26%,transparent_68%)] blur-2xl" />
+          {[...Array(12)].map((_, i) => {
+            const angle = (i * Math.PI * 2) / 12 - Math.PI / 2;
+            const radius = 45;
+
+            return (
+              <div
+                key={`desktop-star-${i}`}
+                className="absolute md:h-9 md:w-9 lg:h-11 lg:w-11"
+                style={{
+                  left: `${50 + Math.cos(angle) * radius}%`,
+                  top: `${50 + Math.sin(angle) * radius}%`,
+                  transform: "translate(-50%, -50%)",
+                  willChange: "transform",
+                  transformOrigin: "center center",
+                  opacity: 0.94,
+                  filter: "drop-shadow(0 0 10px rgba(255, 204, 0, 0.24))",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-full w-full text-euYellow animate-twinkle"
+                  style={{ animationDelay: `${i * 0.16}s` }}
+                >
+                  <path
+                    fill="currentColor"
+                    d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"
+                  />
+                </svg>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="relative container mx-auto px-4 py-10 sm:py-12 lg:py-12">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_28rem] gap-10 items-center lg:min-h-[28rem]">
+            <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:max-w-3xl lg:self-center lg:text-left">
+              <p className="text-xs sm:text-sm font-semibold uppercase tracking-[0.32em] text-white/70">
+                European Software Directory
+              </p>
+
+              <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.92] tracking-tight">
+                Discover Software
                 <span className="block text-euYellow">Made in Europe</span>
               </h1>
-              <p className="text-white/90 text-lg sm:text-xl md:text-xl max-w-2xl mx-auto md:mx-0 leading-relaxed">
-                Discover and explore software made in Europe. Supporting
-                European digital sovereignty and innovation.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
+
+              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:items-start lg:justify-start">
                 <Link
                   to="/software"
-                  className="btn btn-lg bg-white hover:bg-gray-100 text-euBlue shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="btn btn-lg bg-white hover:bg-euYellow text-euBlue border-0 shadow-xl px-8 rounded-full"
                 >
-                  Browse Software
+                  Explore Software
                 </Link>
                 <Link
                   to="/submit"
-                  className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10 transition-all duration-300"
+                  className="btn btn-lg bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 rounded-full"
                 >
                   Submit Software
                 </Link>
               </div>
             </div>
 
-            {/* Mobile Stars - EU Flag Pattern */}
-            <div className="absolute md:hidden w-full h-full mx-auto z-0 top-0 left-0 flex items-center justify-center pointer-events-none">
-              <div className="relative w-4/5 max-w-[300px] aspect-square">
-                {/* Circle of 12 Stars - EU Flag Style */}
-                {[...Array(12)].map((_, i) => {
-                  const angle = (i * Math.PI * 2) / 12;
-                  // Position stars in a perfect circle like the EU flag
-                  const radius = 45; // Percentage-based radius for consistent circle
+            <div className="relative hidden lg:block h-[24rem]" aria-hidden="true" />
+          </div>
+
+          <div className="relative z-10 mt-8 sm:mt-10">
+            <div className="mx-auto mb-4 flex max-w-5xl items-center justify-center px-4 text-[11px] uppercase tracking-[0.24em] text-white/55 sm:px-6 sm:text-xs lg:justify-start">
+              <span>Explore by Category</span>
+            </div>
+
+            <div
+              ref={marqueeRef}
+              className="relative left-1/2 w-screen -translate-x-1/2 overflow-x-auto overscroll-x-contain px-3 py-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:px-6 sm:py-3"
+            >
+              <div className="flex w-max items-center gap-3 sm:gap-4 lg:gap-5">
+                {marqueeCategories.map((category, index) => {
+                  const Icon = CATEGORY_ICONS[category.id];
+                  const count = categoryCounts?.[category.id] || 0;
 
                   return (
-                    <div
-                      key={`mobile-star-${i}`}
-                      className="absolute w-7 h-7 sm:w-8 sm:h-8"
-                      style={{
-                        left: `${50 + Math.cos(angle) * radius}%`,
-                        top: `${50 + Math.sin(angle) * radius}%`,
-                        transform: "translate(-50%, -50%)",
-                        willChange: "transform",
-                        transformOrigin: "center center",
-                        opacity: 0.7,
-                        filter: "drop-shadow(0 0 2px rgba(255, 255, 255, 0.3))",
-                      }}
+                    <Link
+                      key={`${category.id}-${index}`}
+                      to={`/software?category=${category.id}`}
+                      className="group inline-flex min-w-fit snap-start items-center gap-3 rounded-full border border-white/14 bg-white/[0.1] px-4 py-3 shadow-[0_10px_30px_rgba(0,0,0,0.16)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.16] sm:gap-4 sm:px-5 sm:py-4"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="w-full h-full text-euYellow animate-twinkle"
-                        style={{
-                          animationDelay: `${i * 0.2}s`,
-                        }}
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"
-                        />
-                      </svg>
-                    </div>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-euYellow text-euBlue transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11">
+                        {Icon && <Icon className="h-4 w-4 sm:h-5 sm:w-5" />}
+                      </span>
+                      <span className="flex items-center gap-2 whitespace-nowrap sm:gap-3">
+                        <span className="text-sm font-semibold text-white sm:text-base">
+                          {category.name}
+                        </span>
+                        <span className="rounded-full bg-white/12 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/72 sm:px-3 sm:text-xs">
+                          {count}
+                        </span>
+                      </span>
+                    </Link>
                   );
                 })}
               </div>
             </div>
-
-            {/* Stars Section - Desktop */}
-            <div className="hidden md:block relative aspect-square w-full mx-auto z-0 pointer-events-none">
-              {[...Array(12)].map((_, i) => {
-                const angle = (i * Math.PI * 2) / 12;
-                const radius = 45; // Larger radius for desktop
-                return (
-                  <div
-                    key={`desktop-${i}`}
-                    className="absolute md:w-9 md:h-9 lg:w-11 lg:h-11"
-                    style={{
-                      left: `${50 + Math.cos(angle) * radius}%`,
-                      top: `${50 + Math.sin(angle) * radius}%`,
-                      transform: "translate(-50%, -50%)",
-                      willChange: "transform",
-                      transformOrigin: "center center",
-                      opacity: 0.7,
-                      filter: "drop-shadow(0 0 2px rgba(255, 255, 255, 0.3))",
-                    }}
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-full h-full text-euYellow animate-twinkle"
-                      style={{
-                        animationDelay: `${i * 0.2}s`,
-                      }}
-                    >
-                      <path
-                        fill="currentColor"
-                        d="M12 2l2.4 7.4h7.6l-6.2 4.5 2.4 7.4-6.2-4.5-6.2 4.5 2.4-7.4-6.2-4.5h7.6z"
-                      />
-                    </svg>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

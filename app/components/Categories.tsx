@@ -6,81 +6,64 @@ interface CategoriesProps {
 }
 
 export default function Categories({ categoryCounts }: CategoriesProps) {
+  const items = [...CATEGORIES, ...CATEGORIES];
+
   return (
-    <section className="bg-gradient-to-b from-gray-50 to-white py-20">
+    <section
+      id="homepage-categories"
+      className="scroll-mt-28 overflow-hidden bg-white py-10 sm:py-12"
+    >
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
-            Discover European Software
+        <div className="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-euBlue/70">
+            Start Here
+          </p>
+          <h2 className="mt-3 text-3xl font-bold text-gray-900 sm:text-4xl">
+            Pick a category and jump in
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore our curated collection of privacy-focused, innovative
-            software solutions developed across Europe. Choose a category to
-            find the perfect tools for your needs.
+          <p className="mt-4 text-lg text-gray-600">
+            One clean row of categories, moving across the page so users can
+            spot the path they want immediately.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {CATEGORIES.map((category) => {
-            const Icon = CATEGORY_ICONS[category.id];
-            const count = categoryCounts?.[category.id] || 0;
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent sm:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent sm:w-24" />
 
-            return (
-              <Link
-                key={category.id}
-                to={`/categories/${category.id}`}
-                className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-euBlue/20 p-8 hover:-translate-y-1"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="flex-shrink-0">
-                    <div className="w-16 h-16 bg-gradient-to-br from-euBlue/10 to-euBlue/20 rounded-xl flex items-center justify-center group-hover:from-euBlue/20 group-hover:to-euBlue/30 transition-all duration-300">
-                      {Icon && (
-                        <Icon className="w-8 h-8 text-euBlue group-hover:scale-110 transition-transform duration-300" />
-                      )}
-                    </div>
-                  </div>
+          <div className="homepage-marquee-track flex w-max items-center gap-4 py-4 sm:gap-5">
+            {items.map((category, index) => {
+              const Icon = CATEGORY_ICONS[category.id];
+              const count = categoryCounts?.[category.id] || 0;
 
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-3">
-                      <h3 className="text-xl font-semibold text-gray-800 group-hover:text-euBlue transition-colors duration-300">
-                        {category.name}
-                      </h3>
-                      {count > 0 && (
-                        <span className="bg-gray-100 text-gray-600 text-sm px-2.5 py-1 rounded-full font-medium">
-                          {count}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                      {category.description}
-                    </p>
-
-                    <div className="mt-4 flex items-center text-euBlue text-sm font-medium group-hover:gap-2 transition-all duration-300">
-                      <span>Explore {category.name}</span>
-                      <svg
-                        className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-300"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  key={`${category.id}-${index}`}
+                  to={`/software?category=${category.id}`}
+                  className="group inline-flex min-w-fit items-center gap-4 rounded-full border border-euBlue/15 bg-[#f7f1df] px-5 py-4 shadow-[0_10px_30px_rgba(0,51,153,0.08)] transition-all duration-300 hover:-translate-y-0.5 hover:border-euBlue/40 hover:bg-white"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-euBlue text-white transition-transform duration-300 group-hover:scale-105">
+                    {Icon && <Icon className="h-5 w-5" />}
+                  </span>
+                  <span className="flex items-center gap-3 whitespace-nowrap">
+                    <span className="text-base font-semibold text-gray-900">
+                      {category.name}
+                    </span>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-gray-500">
+                      {count > 0 ? count : "Open"}
+                    </span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="text-center mt-16">
-          <Link to="/software" className="btn btn-eu">
+        <div className="mt-8 text-center">
+          <Link
+            to="/software"
+            className="inline-flex items-center gap-3 rounded-full border border-euBlue/20 px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-euBlue transition-colors duration-300 hover:border-euBlue hover:bg-euBlue hover:text-white"
+          >
             View All Software
           </Link>
         </div>

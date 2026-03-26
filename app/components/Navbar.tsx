@@ -189,7 +189,7 @@ export default function Navbar() {
         }`}
       >
         <div className="container mx-auto">
-          <ul className="menu menu-lg w-full p-2 gap-1">
+          <ul className="menu menu-lg w-full p-2 pb-6 gap-1">
             <li>
               <Link
                 to="/software"

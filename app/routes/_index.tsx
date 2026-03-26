@@ -3,8 +3,6 @@ import { useLoaderData } from "@remix-run/react";
 import { countSoftwareByCategoryServer } from "~/lib/software.server";
 import Layout from "~/components/Layout";
 import Hero from "~/components/Hero";
-import Categories from "~/components/Categories";
-import SubmitCTA from "~/components/SubmitCTA";
 import {
   buildSocialMeta,
   DEFAULT_HOME_DESCRIPTION,
@@ -33,9 +31,7 @@ export default function Index() {
   return (
     <Layout>
       <main>
-        <Hero />
-        <Categories categoryCounts={categoryCounts} />
-        <SubmitCTA />
+        <Hero categoryCounts={categoryCounts} />
       </main>
     </Layout>
   );

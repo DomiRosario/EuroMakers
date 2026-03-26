@@ -262,6 +262,30 @@
   .animate-ping-slow {
     animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   }
+
+  @keyframes homepage-marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .homepage-marquee-track {
+    animation: homepage-marquee 36s linear infinite;
+    will-change: transform;
+  }
+
+  .homepage-marquee-scroll:hover .homepage-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .homepage-marquee-track {
+      animation: none;
+    }
+  }
 }
 
 /* Custom classes */
