@@ -52,7 +52,7 @@ export default function Hero({ categoryCounts }: HeroProps) {
           })}
         </div>
 
-        <div className="absolute hidden lg:block right-[1%] top-[48%] w-[42vw] max-w-[40rem] aspect-square -translate-y-1/2">
+        <div className="absolute hidden lg:block right-[5%] top-[48%] w-[42vw] max-w-[40rem] aspect-square -translate-y-1/2">
           <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0.08)_26%,transparent_68%)] blur-2xl" />
           {[...Array(12)].map((_, i) => {
             const angle = (i * Math.PI * 2) / 12 - Math.PI / 2;
