@@ -146,7 +146,7 @@ export default function SoftwarePage() {
   return (
     <Layout>
       <main className="min-h-screen bg-white">
-        <div className="container mx-auto px-4 pb-8">
+        <div className="container mx-auto px-4 pt-3 sm:pt-4 lg:pt-0 pb-8">
           <div className="max-w-7xl mx-auto">
 
             {/* Filter bar — desktop */}
