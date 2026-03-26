@@ -1,5 +1,4 @@
 import { Link } from "@remix-run/react";
-import { useEffect, useRef } from "react";
 import { CATEGORIES, CATEGORY_ICONS } from "~/lib/categories";
 
 interface HeroProps {
@@ -15,76 +14,6 @@ export default function Hero({ categoryCounts }: HeroProps) {
     ...visibleCategories,
     ...visibleCategories,
   ];
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const isHoveredRef = useRef(false);
-  const isPointerDownRef = useRef(false);
-
-  useEffect(() => {
-    const container = marqueeRef.current;
-    if (!container || visibleCategories.length === 0) return;
-
-    let frameId = 0;
-    let lastTime = 0;
-
-    const syncInfinitePosition = () => {
-      const setWidth = container.scrollWidth / 3;
-      if (!setWidth) return;
-
-      if (container.scrollLeft < setWidth * 0.5) {
-        container.scrollLeft += setWidth;
-      } else if (container.scrollLeft > setWidth * 1.5) {
-        container.scrollLeft -= setWidth;
-      }
-    };
-
-    container.scrollLeft = container.scrollWidth / 3;
-
-    const step = (time: number) => {
-      if (!lastTime) lastTime = time;
-      const delta = time - lastTime;
-      lastTime = time;
-
-      if (!isHoveredRef.current && !isPointerDownRef.current) {
-        container.scrollLeft += delta * 0.035;
-        syncInfinitePosition();
-      }
-
-      frameId = window.requestAnimationFrame(step);
-    };
-
-    frameId = window.requestAnimationFrame(step);
-
-    const handleScroll = () => syncInfinitePosition();
-    const handlePointerDown = () => {
-      isPointerDownRef.current = true;
-    };
-    const handlePointerUp = () => {
-      isPointerDownRef.current = false;
-      syncInfinitePosition();
-    };
-    const handleMouseEnter = () => {
-      isHoveredRef.current = true;
-    };
-    const handleMouseLeave = () => {
-      isHoveredRef.current = false;
-      isPointerDownRef.current = false;
-    };
-
-    container.addEventListener("scroll", handleScroll, { passive: true });
-    container.addEventListener("pointerdown", handlePointerDown);
-    window.addEventListener("pointerup", handlePointerUp);
-    container.addEventListener("mouseenter", handleMouseEnter);
-    container.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      container.removeEventListener("scroll", handleScroll);
-      container.removeEventListener("pointerdown", handlePointerDown);
-      window.removeEventListener("pointerup", handlePointerUp);
-      container.removeEventListener("mouseenter", handleMouseEnter);
-      container.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [visibleCategories.length]);
 
   return (
     <section className="relative overflow-hidden bg-euBlue text-white">
@@ -196,11 +125,8 @@ export default function Hero({ categoryCounts }: HeroProps) {
               <span>Explore by Category</span>
             </div>
 
-            <div
-              ref={marqueeRef}
-              className="relative left-1/2 w-screen -translate-x-1/2 overflow-x-auto overscroll-x-contain px-3 py-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:px-6 sm:py-3"
-            >
-              <div className="flex w-max items-center gap-3 sm:gap-4 lg:gap-5">
+            <div className="homepage-marquee-scroll relative left-1/2 w-screen -translate-x-1/2 overflow-x-auto overscroll-x-contain px-3 py-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:px-6 sm:py-3">
+              <div className="homepage-marquee-track flex w-max items-center gap-3 sm:gap-4 lg:gap-5">
                 {marqueeCategories.map((category, index) => {
                   const Icon = CATEGORY_ICONS[category.id];
                   const count = categoryCounts?.[category.id] || 0;
