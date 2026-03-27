@@ -31,6 +31,7 @@ export default function PostHogProvider({
       api_host: apiHost,
       defaults: "2026-01-30",
       capture_pageview: false,
+      capture_pageleave: true,
       persistence: "localStorage+cookie",
     });
   }, [apiKey, apiHost]);
