@@ -9,6 +9,8 @@ const serverEnvSchema = z.object({
   GITHUB_MODERATION_TOKEN: z.string().optional(),
   GITHUB_SUBMISSION_LABEL: z.string().optional(),
   GITHUB_REPORT_LABEL: z.string().optional(),
+  POSTHOG_KEY: z.string().optional(),
+  POSTHOG_HOST: z.string().optional(),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -24,6 +26,8 @@ export function getEnvVars(): ServerEnv {
     GITHUB_MODERATION_TOKEN: process.env.GITHUB_MODERATION_TOKEN,
     GITHUB_SUBMISSION_LABEL: process.env.GITHUB_SUBMISSION_LABEL,
     GITHUB_REPORT_LABEL: process.env.GITHUB_REPORT_LABEL,
+    POSTHOG_KEY: process.env.POSTHOG_KEY,
+    POSTHOG_HOST: process.env.POSTHOG_HOST,
   });
 
   return {

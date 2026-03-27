@@ -33,6 +33,7 @@ import {
 } from "~/utils/sanitize.server";
 import { sendEmail } from "~/utils/smtp2go.server";
 import { buildSocialMeta } from "~/lib/meta";
+import { getPostHog } from "~/lib/posthog.server";
 
 interface ActionResponse {
   error?: string;
@@ -380,8 +381,23 @@ export async function action({ request }: ActionFunctionArgs) {
       console.error("Submission notification email failed:", emailError);
     }
 
+    getPostHog().capture({
+      distinctId: submitterEmail,
+      event: "software submitted",
+      properties: {
+        software_name: name,
+        software_id: id,
+        country,
+        category,
+        ticket_number: issueResult.number,
+        has_logo: Boolean(uploadedLogo),
+        source: "form",
+      },
+    });
+
     return redirect(`/submit/success?ticket=${issueResult.number}`);
   } catch (error) {
+    getPostHog().captureException(error, "anonymous");
     if (
       error instanceof Error &&
       error.message === "Invalid CAPTCHA verification"

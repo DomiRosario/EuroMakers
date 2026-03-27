@@ -21,6 +21,7 @@ import { getEnvVars } from "~/env.server";
 import type { ReportPayload } from "~/lib/moderation.types";
 import { sendEmail } from "~/utils/smtp2go.server";
 import { buildSocialMeta } from "~/lib/meta";
+import { getPostHog } from "~/lib/posthog.server";
 
 interface LoaderData {
   software: Array<{ id: string; name: string }>;
@@ -134,8 +135,21 @@ export async function action({ request }: ActionFunctionArgs) {
       }
     }
 
+    getPostHog().capture({
+      distinctId: contactEmail || "anonymous",
+      event: "software reported",
+      properties: {
+        software_id: softwareId,
+        reason: normalizedReason,
+        has_evidence_url: Boolean(evidenceUrl),
+        has_contact_email: Boolean(contactEmail),
+        ticket_number: issue.number,
+      },
+    });
+
     return json<ActionResponse>({ success: true, issueNumber: issue.number });
   } catch (error) {
+    getPostHog().captureException(error, "anonymous");
     return handleAPIError(error);
   }
 }

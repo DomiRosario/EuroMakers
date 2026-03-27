@@ -12,6 +12,7 @@ import { serverApi, handleAPIError } from "~/lib/api/server";
 import { sanitizeText, sanitizeEmail } from "~/utils/sanitize.server";
 import { sendEmail } from "~/utils/smtp2go.server";
 import { buildSocialMeta } from "~/lib/meta";
+import { getPostHog } from "~/lib/posthog.server";
 
 interface ActionResponse {
   error?: string;
@@ -84,14 +85,25 @@ ${message}
       });
     } catch (error) {
       console.error("Failed to send email:", error);
+      getPostHog().captureException(error, "anonymous");
       return json<ActionResponse>(
         { error: "Failed to send contact email. Please try again." },
         { status: 500 },
       );
     }
 
+    getPostHog().capture({
+      distinctId: email,
+      event: "contact message sent",
+      properties: {
+        category,
+        source: "form",
+      },
+    });
+
     return redirect("/contact/success");
   } catch (error) {
+    getPostHog().captureException(error, "anonymous");
     return handleAPIError(error);
   }
 }

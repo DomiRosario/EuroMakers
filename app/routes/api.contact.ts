@@ -3,6 +3,7 @@ import { sendEmail } from "~/utils/smtp2go.server";
 import { sanitizeText, sanitizeEmail } from "~/utils/sanitize.server";
 import type { ContactFormData } from "~/lib/api/client";
 import { applyRateLimit } from "~/utils/rate-limit.server";
+import { getPostHog } from "~/lib/posthog.server";
 
 export async function action({ request }: ActionFunctionArgs) {
   if (request.method !== "POST") {
@@ -62,9 +63,19 @@ ${sanitizedMessage}
       replyTo: sanitizedEmail,
     });
 
+    getPostHog().capture({
+      distinctId: sanitizedEmail,
+      event: "contact message sent",
+      properties: {
+        category: sanitizedCategory,
+        source: "api",
+      },
+    });
+
     return json({ success: true });
   } catch (error) {
     console.error("Contact form error:", error);
+    getPostHog().captureException(error, "anonymous");
     if (error instanceof Error && error.message === "Rate limit exceeded") {
       return json(
         { error: "Too many requests, please try again later" },

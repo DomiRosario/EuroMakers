@@ -25,6 +25,7 @@ import { getEnvVars } from "~/env.server";
 import type { SubmissionPayload } from "~/lib/moderation.types";
 import { isEuropeanCountry } from "~/lib/european-countries";
 import { CATEGORIES } from "~/lib/categories";
+import { getPostHog } from "~/lib/posthog.server";
 
 function generateId(name: string): string {
   return name
@@ -237,9 +238,23 @@ GDPR Consent: ${gdprConsent ? "Yes" : "No"}
       replyTo: sanitizedEmail,
     });
 
+    getPostHog().capture({
+      distinctId: sanitizedEmail,
+      event: "software submitted",
+      properties: {
+        software_name: sanitizedName,
+        software_id: id,
+        country: sanitizedCountry,
+        category: sanitizedCategory,
+        ticket_number: issue.number,
+        source: "api",
+      },
+    });
+
     return json({ success: true, ticket: issue.number });
   } catch (error) {
     console.error("Software submission error:", error);
+    getPostHog().captureException(error, "anonymous");
     if (error instanceof Error && error.message === "Rate limit exceeded") {
       return json(
         { error: "Too many requests, please try again later" },
