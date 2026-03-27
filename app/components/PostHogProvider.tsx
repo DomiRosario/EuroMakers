@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "@remix-run/react";
 import posthog from "posthog-js";
+import { PostHogProvider as PHProvider, usePostHog } from "posthog-js/react";
 
 interface PostHogProviderProps {
   apiKey?: string;
@@ -8,26 +9,37 @@ interface PostHogProviderProps {
   children: React.ReactNode;
 }
 
+function PostHogPageView() {
+  const location = useLocation();
+  const ph = usePostHog();
+
+  useEffect(() => {
+    ph?.capture("$pageview");
+  }, [location.pathname, location.search, ph]);
+
+  return null;
+}
+
 export default function PostHogProvider({
   apiKey,
   apiHost,
   children,
 }: PostHogProviderProps) {
-  const location = useLocation();
-
   useEffect(() => {
     if (!apiKey) return;
     posthog.init(apiKey, {
       api_host: apiHost,
-      capture_pageview: false, // we capture manually on route change
+      capture_pageview: false,
       persistence: "localStorage+cookie",
     });
   }, [apiKey, apiHost]);
 
-  useEffect(() => {
-    if (!apiKey) return;
-    posthog.capture("$pageview");
-  }, [location.pathname, location.search, apiKey]);
+  if (!apiKey) return <>{children}</>;
 
-  return <>{children}</>;
+  return (
+    <PHProvider client={posthog}>
+      <PostHogPageView />
+      {children}
+    </PHProvider>
+  );
 }
