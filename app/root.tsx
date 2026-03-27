@@ -11,6 +11,7 @@ import {
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import MaintenanceWrapper from "./components/MaintenanceWrapper";
 import Footer from "./components/Footer";
+import PostHogProvider from "./components/PostHogProvider";
 import { getEnvVars, getPublicEnvVars } from "./env.server";
 import {
   buildSocialMeta,
@@ -146,14 +147,16 @@ export default function App() {
         />
       </head>
       <body suppressHydrationWarning className="font-sans">
-        <MaintenanceWrapper isMaintenanceMode={data.isMaintenanceMode}>
-          <div className="flex flex-col min-h-screen">
-            <div className="flex flex-1 flex-col">
-              <Outlet />
+        <PostHogProvider apiKey={data.ENV.POSTHOG_KEY} apiHost={data.ENV.POSTHOG_HOST}>
+          <MaintenanceWrapper isMaintenanceMode={data.isMaintenanceMode}>
+            <div className="flex flex-col min-h-screen">
+              <div className="flex flex-1 flex-col">
+                <Outlet />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </MaintenanceWrapper>
+          </MaintenanceWrapper>
+        </PostHogProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
