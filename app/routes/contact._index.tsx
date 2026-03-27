@@ -170,7 +170,7 @@ export default function ContactPage() {
                         id="name"
                         type="text"
                         name="name"
-                        className="input input-bordered w-full bg-gray-50/50 focus:bg-white transition-colors"
+                        className="input w-full bg-gray-50/50 focus:bg-white transition-colors"
                         placeholder="John Doe"
                         required
                       />
@@ -186,7 +186,7 @@ export default function ContactPage() {
                         id="email"
                         type="email"
                         name="email"
-                        className="input input-bordered w-full bg-gray-50/50 focus:bg-white transition-colors"
+                        className="input w-full bg-gray-50/50 focus:bg-white transition-colors"
                         placeholder="you@example.com"
                         required
                       />
@@ -203,7 +203,7 @@ export default function ContactPage() {
                       <select
                         id="category"
                         name="category"
-                        className="select select-bordered w-full bg-gray-50/50 focus:bg-white transition-colors"
+                        className="select w-full bg-gray-50/50 focus:bg-white transition-colors"
                         required
                         defaultValue=""
                       >
@@ -230,7 +230,7 @@ export default function ContactPage() {
                         id="subject"
                         type="text"
                         name="subject"
-                        className="input input-bordered w-full bg-gray-50/50 focus:bg-white transition-colors"
+                        className="input w-full bg-gray-50/50 focus:bg-white transition-colors"
                         placeholder="What is your message about?"
                         required
                       />
@@ -247,7 +247,7 @@ export default function ContactPage() {
                       id="message"
                       name="message"
                       rows={6}
-                      className="textarea textarea-bordered w-full bg-gray-50/50 focus:bg-white transition-colors"
+                      className="textarea w-full bg-gray-50/50 focus:bg-white transition-colors"
                       placeholder="Write your message here..."
                       required
                     ></textarea>

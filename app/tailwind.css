@@ -35,19 +35,19 @@
     color: #1f2937 !important;
   }
 
-  /* DaisyUI form elements override */
+  /* DaisyUI v5 form elements override — must set full border since --border variable is not defined */
   .input,
   .textarea {
     background-color: white !important;
     color: #1f2937 !important;
-    border-color: #d1d5db !important;
+    border: 1px solid #d1d5db !important;
   }
 
   .input:focus,
   .textarea:focus {
     background-color: white !important;
     color: #1f2937 !important;
-    border-color: #003399 !important;
+    border: 1px solid #003399 !important;
   }
 
   /* DaisyUI select styling - force override */
@@ -56,7 +56,7 @@
   select {
     background-color: white !important;
     color: #1f2937 !important;
-    border-color: #d1d5db !important;
+    border: 1px solid #d1d5db !important;
     -webkit-appearance: none !important;
     -moz-appearance: none !important;
     appearance: none !important;
@@ -67,7 +67,7 @@
   select:focus {
     background-color: white !important;
     color: #1f2937 !important;
-    border-color: #003399 !important;
+    border: 1px solid #003399 !important;
   }
 
   select.select option,
