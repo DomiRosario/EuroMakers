@@ -29,6 +29,7 @@ export default function PostHogProvider({
     if (!apiKey) return;
     posthog.init(apiKey, {
       api_host: apiHost,
+      defaults: "2026-01-30",
       capture_pageview: false,
       persistence: "localStorage+cookie",
     });
