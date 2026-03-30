@@ -442,7 +442,11 @@ export default function SoftwarePage() {
             {openTopFilter && (
               <div
                 className="fixed inset-0 z-10"
+                role="button"
+                tabIndex={0}
+                aria-label="Close filter"
                 onClick={() => setOpenTopFilter(null)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === 'Escape') setOpenTopFilter(null); }}
               />
             )}
 
