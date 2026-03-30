@@ -443,6 +443,14 @@ export default function SoftwarePage() {
               <div
                 className="fixed inset-0 z-10"
                 onClick={() => setOpenTopFilter(null)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    setOpenTopFilter(null);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label="Close open filter menu"
               />
             )}
 
