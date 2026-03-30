@@ -1,0 +1,14 @@
+{
+  "id": "dream-broker-studio",
+  "name": "Dream Broker Studio",
+  "description": "Dream Broker Studio is an easy-to-use, private cloud-based software for managing the whole life cycle of online videos. Studio helps people and enterprises communicate, collaborate and learn with online video.",
+  "country": "Finland",
+  "logo": "/images/dream-broker-studio_icon.png",
+  "website": "https://dreambroker.com/products/studio/overview/",
+  "longDescription": "Dream Broker Studio is an easy-to-use, private cloud-based software for managing the whole life cycle of online videos. Studio helps people and enterprises communicate, collaborate and learn with online video. Designed for end-to-end workflows, it allows anyone to easily create, edit and share online videos, anywhere, anytime and on any device. Features:\n\nCamera Recording: Users can record videos in Studio using any connected camera on their desktop or mobile devices.\nScreen Recording: Users can record their desktop screens to create videos in Studio for various use cases. Create instruction tutorials for training or voiceover recorded presentations.\nWebcasting: Dream Broker Studio Webcasting allows easy-to-use video live streaming from one presenter to a large audience securely.\nUpload: Upload any video, image or audio file into your Studio library for your video projects. Record your video with any device such as a mobile phone or camera, and upload it easily afterwards.\nDream Upload: Allow anyone internally within your organisation or externally, who is not a Studio user, to upload videos to your channel. Use the Dream Upload feature as a secure platform to receive important media assets securely from anyone. Dream Broker Studio contains everything you need to create, edit, manage, share, and analyze your videos in a cyber-secure, GDPR-compliant cloud hosted in EU.",
+  "features": [
+    "End-to-end encryption",
+    "Cross-platform support",
+    "GDPR compliant"
+  ]
+}
