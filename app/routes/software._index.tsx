@@ -444,7 +444,8 @@ export default function SoftwarePage() {
                 className="fixed inset-0 z-10"
                 onClick={() => setOpenTopFilter(null)}
                 onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
+                  if (event.key === "Enter" || event.key === " " || event.key === "Space") {
+                    event.preventDefault();
                     setOpenTopFilter(null);
                   }
                 }}
