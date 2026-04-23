@@ -1,5 +1,5 @@
-const SITE_URL = "https://euromakers.org";
-const DEFAULT_OG_IMAGE_PATH = "/og-image.jpg";
+export const SITE_URL = "https://euromakers.org";
+export const DEFAULT_OG_IMAGE_PATH = "/og-image.png";
 const SITE_NAME = "EuroMakers";
 
 const normalizePath = (path: string) => {
@@ -39,9 +39,12 @@ export function buildSocialMeta({
     { property: "og:type", content: type },
     { property: "og:url", content: pageUrl },
     { property: "og:site_name", content: SITE_NAME },
+    { property: "og:locale", content: "en_US" },
     { property: "og:image", content: imageUrl },
+    { property: "og:image:secure_url", content: imageUrl },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
+    { property: "og:image:type", content: "image/png" },
     {
       property: "og:image:alt",
       content: "EuroMakers banner highlighting European software discovery",

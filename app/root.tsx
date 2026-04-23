@@ -8,7 +8,7 @@ import {
   isRouteErrorResponse,
   useRouteError,
 } from "@remix-run/react";
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
 import MaintenanceWrapper from "./components/MaintenanceWrapper";
 import Footer from "./components/Footer";
 import { getEnvVars, getPublicEnvVars } from "./env.server";
@@ -20,7 +20,8 @@ import {
 
 import "./tailwind.css";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
+  const canonicalUrl = data?.canonicalUrl ?? "https://euromakers.org";
   return [
     ...buildSocialMeta({
       title: DEFAULT_HOME_TITLE,
@@ -46,6 +47,11 @@ export const meta: MetaFunction = () => {
     { name: "revisit-after", content: "7 days" },
     { name: "msapplication-TileColor", content: "#1E40AF" },
     { name: "msapplication-config", content: "/browserconfig.xml" },
+    {
+      tagName: "link",
+      rel: "canonical",
+      href: canonicalUrl,
+    },
   ];
 };
 
@@ -71,14 +77,18 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export async function loader() {
+export async function loader({ request }: LoaderFunctionArgs) {
   const env = getEnvVars();
   const publicEnv = getPublicEnvVars();
   const isMaintenanceMode = env.MAINTENANCE_MODE === "true";
 
+  const url = new URL(request.url);
+  const canonicalUrl = `https://euromakers.org${url.pathname}${url.search}`;
+
   return {
     isMaintenanceMode,
     ENV: publicEnv,
+    canonicalUrl,
   };
 }
 

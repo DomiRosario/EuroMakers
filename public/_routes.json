@@ -9,6 +9,11 @@
         "/build/*",
         "/data/*",
         "/icons/*",
-        "/images/*"
+        "/images/*",
+        "/og-image.png",
+        "/Euro-Makers*.png",
+        "/sitemap.xml",
+        "/robots.txt",
+        "/browserconfig.xml"
     ]
 }

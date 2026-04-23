@@ -10,7 +10,7 @@ import SoftwareCard from "~/components/SoftwareCard";
 import * as Flag from "country-flag-icons/react/3x2";
 import { getCountryCode } from "~/lib/countries";
 import { mapRawSoftwareToSoftware } from "~/lib/software";
-import { buildSocialMeta } from "~/lib/meta";
+import { buildSocialMeta, DEFAULT_OG_IMAGE_PATH } from "~/lib/meta";
 import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
 import { getSoftwareContentBlocks } from "~/lib/software-content";
 
@@ -135,11 +135,17 @@ export const meta: MetaFunction = ({ data, params }) => {
   const description =
     software.description ||
     `${software.name} is a European software product listed on EuroMakers.`;
+  const logoUrl = getSoftwareLogoUrl(software.logo, software.website);
+  const imagePath =
+    logoUrl && !logoUrl.includes("google.com/s2/favicons")
+      ? logoUrl
+      : DEFAULT_OG_IMAGE_PATH;
 
   return buildSocialMeta({
     title,
     description,
     path: `/software/${software.id}`,
+    imagePath,
   });
 };
 
