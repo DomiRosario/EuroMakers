@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
     ],
     ssr: {
       external: ["@remix-run/dev/server-build", "canvas"],
-      noExternal: ["node:*"],
+      noExternal: ["node:*", "posthog-js"],
     },
     build: {
       rollupOptions: {

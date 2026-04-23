@@ -6,7 +6,7 @@
       "name": "EuroMakers",
       "framework": "remix",
       "buildRuntime": "node-22",
-      "installCommand": "npm install",
+      "installCommand": "npm ci",
       "buildCommand": "npm run build",
       "outputDirectory": "build/client",
       "fallbackFile": ""
