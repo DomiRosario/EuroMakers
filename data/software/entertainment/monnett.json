@@ -1,0 +1,17 @@
+{
+  "id": "monnett",
+  "name": "Monnett",
+  "description": "A social media platform made for humans — see your friends again with no AI algorithms, no ads, and full privacy.",
+  "country": "Luxembourg",
+  "logo": "/images/monnett_icon.jpeg",
+  "website": "https://monnett.social/",
+  "longDescription": "Monnett is a social media platform built in Europe for people, not algorithms. Founded in Luxembourg, it was created as a direct response to the growing frustration with traditional social networks that prioritize engagement over human connection. With over 65,000 users and growing, Monnett offers a refreshing alternative where you actually see your friends' posts in a chronological feed — no AI curation deciding what you should see, no targeted ads following you around, and no data selling to third parties.\n\nThe platform puts you in control with a fully customizable algorithm: want to see only your friends? You can. Want to discover new content? That works too. Unlike other platforms, Monnett does not shadowban — when someone follows you, they actually see what you post. Privacy is taken seriously: delete a photo and it is gone for good, private chats are never monitored, and your personal data is never profiled or sold to advertisers. Monnett is available on iOS and Android, offering a humane, ad-free, and algorithm-free space for genuine social interaction.",
+  "features": [
+    "Customizable algorithm — full control over your feed",
+    "No shadowbans — your followers actually see your posts",
+    "No creepy profiling or data selling",
+    "Private chats stay private, no monitoring",
+    "Chronological feed option to see just your friends",
+    "No targeted ads"
+  ]
+}
