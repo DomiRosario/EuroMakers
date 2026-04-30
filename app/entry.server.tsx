@@ -71,7 +71,7 @@ function handleBotRequest(
             [
               "default-src 'self';",
               "connect-src 'self' https://t.euromakers.org;",
-              "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;",
+              "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://frontend-cdn.perplexity.ai;",
               "img-src 'self' data: https://www.google.com;",
               "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://t.euromakers.org;",
               "script-src-elem 'self' 'unsafe-inline' https://challenges.cloudflare.com https://t.euromakers.org;",
@@ -130,7 +130,7 @@ function handleBrowserRequest(
             [
               "default-src 'self';",
               "connect-src 'self' https://t.euromakers.org;",
-              "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;",
+              "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com https://frontend-cdn.perplexity.ai;",
               "img-src 'self' data: https://www.google.com;",
               "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://t.euromakers.org;",
               "script-src-elem 'self' 'unsafe-inline' https://challenges.cloudflare.com https://t.euromakers.org;",
