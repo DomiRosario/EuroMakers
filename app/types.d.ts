@@ -6,7 +6,6 @@ declare global {
       POSTHOG_KEY?: string;
       POSTHOG_HOST?: string;
       BRANDFETCH_CLIENT_ID?: string;
-      LOGO_DEV_PUBLIC?: string;
     };
   }
 }

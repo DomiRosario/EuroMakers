@@ -49,6 +49,5 @@ export function getPublicEnvVars() {
     POSTHOG_KEY: env.POSTHOG_KEY,
     POSTHOG_HOST: env.POSTHOG_HOST,
     BRANDFETCH_CLIENT_ID: env.BRANDFETCH_CLIENT_ID,
-    LOGO_DEV_PUBLIC: env.LOGO_DEV_PUBLIC,
   };
 }

@@ -17,6 +17,13 @@ export function getDomainFromWebsite(website?: string | null): string | null {
   }
 }
 
+export function getSoftwareLogoProxyUrl(website?: string | null): string | null {
+  const domain = getDomainFromWebsite(website);
+  if (!domain) return null;
+
+  return `/api/logo?domain=${encodeURIComponent(domain)}`;
+}
+
 function appendParams(url: string, params: Record<string, string>) {
   const searchParams = new URLSearchParams(params);
   return `${url}?${searchParams.toString()}`;
@@ -38,7 +45,7 @@ export function getSoftwareLogoCandidates(
     for (const type of ["symbol", "logo", "icon"]) {
       candidates.push(
         appendParams(
-          `https://cdn.brandfetch.io/domain/${encodedDomain}/fallback/404/type/${type}`,
+          `https://cdn.brandfetch.io/${encodedDomain}/fallback/404/type/${type}`,
           { c: brandfetchClientId },
         ),
       );

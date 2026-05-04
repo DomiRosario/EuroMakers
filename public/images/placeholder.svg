@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Logo placeholder">
+  <defs>
+    <path id="star" d="M0-12l3.5 7.2 8 .9-5.9 5.5 1.6 7.9L0 5.5l-7.2 4 1.6-7.9-5.9-5.5 8-.9z"/>
+  </defs>
+  <rect width="256" height="256" rx="48" fill="#1e40af"/>
+  <g fill="#facc15">
+    <use href="#star" transform="translate(128 50)"/>
+    <use href="#star" transform="translate(167 60)"/>
+    <use href="#star" transform="translate(196 89)"/>
+    <use href="#star" transform="translate(206 128)"/>
+    <use href="#star" transform="translate(196 167)"/>
+    <use href="#star" transform="translate(167 196)"/>
+    <use href="#star" transform="translate(128 206)"/>
+    <use href="#star" transform="translate(89 196)"/>
+    <use href="#star" transform="translate(60 167)"/>
+    <use href="#star" transform="translate(50 128)"/>
+    <use href="#star" transform="translate(60 89)"/>
+    <use href="#star" transform="translate(89 60)"/>
+  </g>
+</svg>

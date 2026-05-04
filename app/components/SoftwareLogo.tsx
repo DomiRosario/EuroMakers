@@ -1,5 +1,10 @@
 import { useEffect, useState, type ImgHTMLAttributes } from "react";
-import { getSoftwareLogoCandidates, PLACEHOLDER_LOGO } from "~/lib/logo";
+import {
+  getDomainFromWebsite,
+  getSoftwareLogoCandidates,
+  getSoftwareLogoProxyUrl,
+  PLACEHOLDER_LOGO,
+} from "~/lib/logo";
 
 type SoftwareLogoProps = Omit<
   ImgHTMLAttributes<HTMLImageElement>,
@@ -9,6 +14,58 @@ type SoftwareLogoProps = Omit<
   website?: string | null;
 };
 
+const LOGO_CACHE_VERSION = "v1";
+const LOGO_CACHE_TTL_MS = 30 * 24 * 60 * 60 * 1000;
+
+function getLogoCacheKey(website?: string | null) {
+  const domain = getDomainFromWebsite(website);
+  return domain ? `euromakers:logo:${LOGO_CACHE_VERSION}:${domain}` : null;
+}
+
+function getCachedLogoSrc(cacheKey: string | null, candidates: string[]) {
+  if (!cacheKey) return null;
+
+  try {
+    const rawValue = window.localStorage.getItem(cacheKey);
+    if (!rawValue) return null;
+
+    const cached = JSON.parse(rawValue) as {
+      src?: string;
+      expiresAt?: number;
+    };
+
+    if (
+      !cached.src ||
+      !cached.expiresAt ||
+      cached.expiresAt <= Date.now() ||
+      !candidates.includes(cached.src)
+    ) {
+      window.localStorage.removeItem(cacheKey);
+      return null;
+    }
+
+    return cached.src;
+  } catch {
+    return null;
+  }
+}
+
+function setCachedLogoSrc(cacheKey: string | null, src: string) {
+  if (!cacheKey || src === PLACEHOLDER_LOGO) return;
+
+  try {
+    window.localStorage.setItem(
+      cacheKey,
+      JSON.stringify({
+        src,
+        expiresAt: Date.now() + LOGO_CACHE_TTL_MS,
+      }),
+    );
+  } catch {
+    // Browsers may block storage in privacy modes; logos still work without it.
+  }
+}
+
 export default function SoftwareLogo({
   alt,
   website,
@@ -16,16 +73,21 @@ export default function SoftwareLogo({
 }: SoftwareLogoProps) {
   const [logoCandidates, setLogoCandidates] = useState<string[]>([]);
   const [logoIndex, setLogoIndex] = useState(0);
+  const cacheKey = getLogoCacheKey(website);
 
   useEffect(() => {
-    setLogoCandidates(
-      getSoftwareLogoCandidates(website, {
+    const candidates = [
+      ...getSoftwareLogoCandidates(website, {
         BRANDFETCH_CLIENT_ID: window.ENV?.BRANDFETCH_CLIENT_ID,
-        LOGO_DEV_PUBLIC: window.ENV?.LOGO_DEV_PUBLIC,
       }),
-    );
-    setLogoIndex(0);
-  }, [website]);
+      getSoftwareLogoProxyUrl(website),
+    ].filter((candidate): candidate is string => Boolean(candidate));
+
+    const cachedSrc = getCachedLogoSrc(cacheKey, candidates);
+
+    setLogoCandidates(candidates);
+    setLogoIndex(cachedSrc ? candidates.indexOf(cachedSrc) : 0);
+  }, [cacheKey, website]);
 
   const logoSrc = logoCandidates[logoIndex] || PLACEHOLDER_LOGO;
 
@@ -34,10 +96,19 @@ export default function SoftwareLogo({
       {...imageProps}
       src={logoSrc}
       alt={alt}
-      onError={() => {
-        if (logoIndex < logoCandidates.length) {
+      onLoad={(event) => {
+        setCachedLogoSrc(
+          cacheKey,
+          event.currentTarget.getAttribute("src") || event.currentTarget.src,
+        );
+      }}
+      onError={(event) => {
+        if (event.currentTarget.src.endsWith(PLACEHOLDER_LOGO)) return;
+        if (logoIndex < logoCandidates.length - 1) {
           setLogoIndex((currentIndex) => currentIndex + 1);
+          return;
         }
+        event.currentTarget.src = PLACEHOLDER_LOGO;
       }}
     />
   );
