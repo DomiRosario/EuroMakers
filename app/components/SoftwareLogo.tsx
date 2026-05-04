@@ -69,10 +69,13 @@ function setCachedLogoSrc(cacheKey: string | null, src: string) {
 export default function SoftwareLogo({
   alt,
   website,
+  onLoad,
+  style,
   ...imageProps
 }: SoftwareLogoProps) {
   const [logoCandidates, setLogoCandidates] = useState<string[]>([]);
   const [logoIndex, setLogoIndex] = useState(0);
+  const [isLogoLoaded, setIsLogoLoaded] = useState(false);
   const cacheKey = getLogoCacheKey(website);
 
   useEffect(() => {
@@ -87,23 +90,39 @@ export default function SoftwareLogo({
 
     setLogoCandidates(candidates);
     setLogoIndex(cachedSrc ? candidates.indexOf(cachedSrc) : 0);
+    setIsLogoLoaded(false);
   }, [cacheKey, website]);
 
   const logoSrc = logoCandidates[logoIndex] || PLACEHOLDER_LOGO;
+  const isPlaceholderSrc = logoSrc === PLACEHOLDER_LOGO;
 
   return (
     <img
       {...imageProps}
       src={logoSrc}
       alt={alt}
+      style={{
+        ...(!isLogoLoaded && !isPlaceholderSrc
+          ? {
+              backgroundImage: `url("${PLACEHOLDER_LOGO}")`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }
+          : {}),
+        ...style,
+      }}
       onLoad={(event) => {
+        setIsLogoLoaded(true);
         setCachedLogoSrc(
           cacheKey,
           event.currentTarget.getAttribute("src") || event.currentTarget.src,
         );
+        onLoad?.(event);
       }}
       onError={(event) => {
         if (event.currentTarget.src.endsWith(PLACEHOLDER_LOGO)) return;
+        setIsLogoLoaded(false);
         if (logoIndex < logoCandidates.length - 1) {
           setLogoIndex((currentIndex) => currentIndex + 1);
           return;
