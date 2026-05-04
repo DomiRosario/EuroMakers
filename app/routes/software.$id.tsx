@@ -10,9 +10,9 @@ import SoftwareCard from "~/components/SoftwareCard";
 import * as Flag from "country-flag-icons/react/3x2";
 import { getCountryCode } from "~/lib/countries";
 import { mapRawSoftwareToSoftware } from "~/lib/software";
-import { buildSocialMeta, DEFAULT_OG_IMAGE_PATH } from "~/lib/meta";
-import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
+import { buildSocialMeta } from "~/lib/meta";
 import { getSoftwareContentBlocks } from "~/lib/software-content";
+import SoftwareLogo from "~/components/SoftwareLogo";
 
 // Kept local getFlagComponent
 const getFlagComponent = (countryCode: string) => {
@@ -135,17 +135,11 @@ export const meta: MetaFunction = ({ data, params }) => {
   const description =
     software.description ||
     `${software.name} is a European software product listed on EuroMakers.`;
-  const logoUrl = getSoftwareLogoUrl(software.logo, software.website);
-  const imagePath =
-    logoUrl && !logoUrl.includes("google.com/s2/favicons")
-      ? logoUrl
-      : DEFAULT_OG_IMAGE_PATH;
 
   return buildSocialMeta({
     title,
     description,
     path: `/software/${software.id}`,
-    imagePath,
   });
 };
 
@@ -187,10 +181,9 @@ export default function SoftwareDetail() {
           <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 md:p-6 lg:p-8 lg:col-start-1 lg:row-start-1">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-14 h-14 flex-shrink-0 flex items-center justify-center">
-                <img
-                  src={getSoftwareLogoUrl(software.logo, software.website)}
+                <SoftwareLogo
+                  website={software.website}
                   alt={`${software.name} logo`}
-                  onError={handleLogoLoadError}
                   className="max-w-full max-h-full object-contain"
                 />
               </div>
@@ -317,7 +310,6 @@ export default function SoftwareDetail() {
                     description={item.description}
                     categoryDisplayName={item.categoryDisplayName}
                     country={item.country}
-                    logo={item.logo || "/images/placeholder.svg"}
                     website={item.website}
                     viewMode="rectangles"
                   />
@@ -331,7 +323,6 @@ export default function SoftwareDetail() {
                     description={item.description}
                     categoryDisplayName={item.categoryDisplayName}
                     country={item.country}
-                    logo={item.logo || "/images/placeholder.svg"}
                     website={item.website}
                     viewMode="cards"
                   />
