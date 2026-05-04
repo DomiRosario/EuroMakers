@@ -11,6 +11,8 @@ const serverEnvSchema = z.object({
   GITHUB_REPORT_LABEL: z.string().optional(),
   POSTHOG_KEY: z.string().optional(),
   POSTHOG_HOST: z.string().optional(),
+  BRANDFETCH_CLIENT_ID: z.string().optional(),
+  LOGO_DEV_PUBLIC: z.string().optional(),
 });
 
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
@@ -28,6 +30,8 @@ export function getEnvVars(): ServerEnv {
     GITHUB_REPORT_LABEL: process.env.GITHUB_REPORT_LABEL,
     POSTHOG_KEY: process.env.POSTHOG_KEY,
     POSTHOG_HOST: process.env.POSTHOG_HOST,
+    BRANDFETCH_CLIENT_ID: process.env.BRANDFETCH_CLIENT_ID,
+    LOGO_DEV_PUBLIC: process.env.LOGO_DEV_PUBLIC,
   });
 
   return {
@@ -44,5 +48,7 @@ export function getPublicEnvVars() {
     CLOUDFLARE_TURNSTILE_SITE_KEY: env.CLOUDFLARE_TURNSTILE_SITE_KEY,
     POSTHOG_KEY: env.POSTHOG_KEY,
     POSTHOG_HOST: env.POSTHOG_HOST,
+    BRANDFETCH_CLIENT_ID: env.BRANDFETCH_CLIENT_ID,
+    LOGO_DEV_PUBLIC: env.LOGO_DEV_PUBLIC,
   };
 }

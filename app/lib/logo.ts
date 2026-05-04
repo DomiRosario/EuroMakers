@@ -1,33 +1,61 @@
-import type { SyntheticEvent } from "react";
+export const PLACEHOLDER_LOGO = "/images/placeholder.svg";
 
-const PLACEHOLDER_LOGO = "/images/placeholder.svg";
-
-function isPlaceholderLogo(logo?: string | null): boolean {
-  const normalized = (logo || "").trim();
-  return normalized.length === 0 || normalized === PLACEHOLDER_LOGO;
+export interface LogoApiEnv {
+  BRANDFETCH_CLIENT_ID?: string;
+  LOGO_DEV_PUBLIC?: string;
 }
 
-function getFaviconUrlFromWebsite(website?: string | null): string | null {
+export function getDomainFromWebsite(website?: string | null): string | null {
   if (!website) return null;
 
   try {
     const url = new URL(website);
-    if (!url.hostname) return null;
-
-    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(url.hostname)}&sz=256`;
+    const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+    return hostname || null;
   } catch {
     return null;
   }
 }
 
-export function getSoftwareLogoUrl(logo?: string, website?: string): string {
-  if (!isPlaceholderLogo(logo)) return (logo as string).trim();
-  return getFaviconUrlFromWebsite(website) || PLACEHOLDER_LOGO;
+function appendParams(url: string, params: Record<string, string>) {
+  const searchParams = new URLSearchParams(params);
+  return `${url}?${searchParams.toString()}`;
 }
 
-export function handleLogoLoadError(event: SyntheticEvent<HTMLImageElement>) {
-  const image = event.currentTarget;
-  if (image.src.endsWith(PLACEHOLDER_LOGO)) return;
-  image.onerror = null;
-  image.src = PLACEHOLDER_LOGO;
+export function getSoftwareLogoCandidates(
+  website?: string | null,
+  env: LogoApiEnv = {},
+): string[] {
+  const domain = getDomainFromWebsite(website);
+  if (!domain) return [];
+
+  const encodedDomain = encodeURIComponent(domain);
+  const candidates: string[] = [];
+  const brandfetchClientId = env.BRANDFETCH_CLIENT_ID?.trim();
+  const logoDevToken = env.LOGO_DEV_PUBLIC?.trim();
+
+  if (brandfetchClientId) {
+    for (const type of ["symbol", "logo", "icon"]) {
+      candidates.push(
+        appendParams(
+          `https://cdn.brandfetch.io/domain/${encodedDomain}/fallback/404/type/${type}`,
+          { c: brandfetchClientId },
+        ),
+      );
+    }
+  }
+
+  if (logoDevToken) {
+    candidates.push(
+      appendParams(`https://img.logo.dev/${encodedDomain}`, {
+        token: logoDevToken,
+        size: "256",
+        format: "png",
+        retina: "true",
+        fallback: "404",
+      }),
+    );
+  }
+
+  return candidates;
 }

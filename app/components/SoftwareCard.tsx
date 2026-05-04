@@ -1,7 +1,7 @@
 import { Link } from "@remix-run/react";
 import * as Flag from "country-flag-icons/react/3x2";
 import { getCountryCode } from "~/lib/countries";
-import { getSoftwareLogoUrl, handleLogoLoadError } from "~/lib/logo";
+import SoftwareLogo from "./SoftwareLogo";
 
 export type ViewMode = "cards" | "rectangles";
 
@@ -11,7 +11,6 @@ interface SoftwareCardProps {
   description: string;
   categoryDisplayName: string;
   country: string;
-  logo: string;
   website: string;
   viewMode?: ViewMode;
 }
@@ -57,7 +56,6 @@ export default function SoftwareCard({
   description,
   categoryDisplayName,
   country,
-  logo,
   website,
   viewMode = "cards",
 }: SoftwareCardProps) {
@@ -68,10 +66,9 @@ export default function SoftwareCard({
         <div className="modern-card group h-full flex flex-row overflow-hidden">
           {/* Logo — left column */}
           <div className="relative flex-shrink-0 w-36 sm:w-44 flex items-center justify-center bg-gray-50/50 group-hover:bg-gray-100/80 transition-colors">
-            <img
-              src={getSoftwareLogoUrl(logo, website)}
+            <SoftwareLogo
+              website={website}
               alt={`${name} logo`}
-              onError={handleLogoLoadError}
               className="object-contain p-3 w-28 h-28 transition-transform duration-300 group-hover:scale-105"
               loading="lazy"
             />
@@ -131,10 +128,9 @@ export default function SoftwareCard({
         <div className="relative">
           <figure className="p-6 h-48 flex items-center justify-center bg-gray-50/50 group-hover:bg-gray-100/80 transition-colors">
             <div className="relative w-full h-full flex items-center justify-center">
-              <img
-                src={getSoftwareLogoUrl(logo, website)}
+              <SoftwareLogo
+                website={website}
                 alt={`${name} logo`}
-                onError={handleLogoLoadError}
                 className="object-contain p-2 max-w-full max-h-full transition-transform duration-300 group-hover:scale-105"
                 width={200}
                 height={200}

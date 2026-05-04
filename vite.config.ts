@@ -47,6 +47,8 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env.MAINTENANCE_MODE': JSON.stringify(env.MAINTENANCE_MODE),
       'process.env.CLOUDFLARE_TURNSTILE_SITE_KEY': JSON.stringify(env.CLOUDFLARE_TURNSTILE_SITE_KEY),
+      'process.env.BRANDFETCH_CLIENT_ID': JSON.stringify(env.BRANDFETCH_CLIENT_ID),
+      'process.env.LOGO_DEV_PUBLIC': JSON.stringify(env.LOGO_DEV_PUBLIC),
     }
   };
 });

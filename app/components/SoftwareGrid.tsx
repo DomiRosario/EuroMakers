@@ -25,7 +25,6 @@ export default function SoftwareGrid({
           description={item.description}
           categoryDisplayName={item.categoryDisplayName}
           country={item.country}
-          logo={item.logo}
           website={item.website}
           viewMode={viewMode}
         />
