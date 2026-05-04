@@ -111,6 +111,18 @@ export default function Footer() {
                     Privacy Policy
                   </Link>
                 </li>
+                <li>
+                  <span className="text-gray-500 text-sm">
+                    Logos by{" "}
+                    <a href="https://brandfetch.com" className="hover:text-euBlue">
+                      Brandfetch
+                    </a>{" "}
+                    and{" "}
+                    <a href="https://logo.dev" className="hover:text-euBlue">
+                      Logo.dev
+                    </a>
+                  </span>
+                </li>
               </ul>
             </div>
 
